@@ -4,6 +4,7 @@ import { colors, fonts, windowHeight } from '../../utils'
 import axios from 'axios'
 import { apiURL } from '../../utils/localStorage';
 import YoutubePlayer from "react-native-youtube-iframe";
+import { ImageBackground } from 'react-native';
 
 
 export default function SEdukasi() {
@@ -25,7 +26,7 @@ export default function SEdukasi() {
                 marginHorizontal: 10,
                 marginVertical: 5,
                 padding: 10,
-                borderWidth: 1,
+
             }}>
 
                 <Image source={require('../../assets/A4.png')} style={{
@@ -61,12 +62,12 @@ export default function SEdukasi() {
         setPlaying((prev) => !prev);
     }, []);
     return (
-        <View style={{
+        <ImageBackground source={require('../../assets/back.png')} style={{
             flex: 1,
         }}>
             <View style={{
                 flex: 1,
-                backgroundColor: colors.secondary,
+
             }}>
                 <YoutubePlayer
                     height={windowHeight / 3}
@@ -78,11 +79,11 @@ export default function SEdukasi() {
             <View style={{
                 flex: 1.5,
                 paddingTop: 10,
-                backgroundColor: colors.primary
+
             }}>
                 <FlatList numColumns={2} data={data} renderItem={__renderItem} />
             </View>
-        </View >
+        </ImageBackground >
     )
 }
 

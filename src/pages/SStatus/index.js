@@ -8,6 +8,7 @@ import { MyButton, MyGap, MyInput } from '../../components';
 import DatePicker from 'react-native-date-picker'
 import { useIsFocused } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
+import { ImageBackground } from 'react-native';
 export default function SStatus({ navigation }) {
 
     const [date, setDate] = useState(new Date())
@@ -110,14 +111,47 @@ export default function SStatus({ navigation }) {
                 }
 
 
-                {item.status_keluarga == "Dalam Pengobatan" && <MyButton onPress={() => {
-                    navigation.navigate('SObat', item);
-                }} title="Pemantauan Obat" warna={colors.danger} Icons="shield-checkmark-outline" />
-                }
+                {item.status_keluarga == "Dalam Pengobatan" && <View style={{
+                    flexDirection: 'row'
+                }}>
+                    <View style={{
+                        flex: 1,
+                        paddingRight: 10,
+                    }}>
+                        <MyButton onPress={() => {
+                            navigation.navigate('SCek', item);
+                        }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
+                    </View>
+                    <View style={{
+                        flex: 1,
+                        paddingLeft: 10,
+                    }}>
+                        <MyButton onPress={() => {
+                            navigation.navigate('SObat', item);
+                        }} title="Pemantauan Obat" warna={colors.danger} Icons="shield-checkmark-outline" />
+                    </View>
+                </View>}
 
-                {item.status_keluarga == "Wajib menghubungi Kader / Petugas Puskesmas" && <MyButton onPress={() => {
-                    navigation.navigate('SCekDahak', item);
-                }} title="Cek Dahak" warna={colors.black} Icons="shield-checkmark-outline" />
+                {item.status_keluarga == "Wajib menghubungi Kader / Petugas Puskesmas" && <View style={{
+                    flexDirection: 'row'
+                }}>
+                    <View style={{
+                        flex: 1,
+                        paddingRight: 10,
+                    }}>
+                        <MyButton onPress={() => {
+                            navigation.navigate('SCek', item);
+                        }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
+                    </View>
+                    <View style={{
+                        flex: 1,
+                        paddingLeft: 10,
+                    }}><MyButton onPress={() => {
+                        navigation.navigate('SCekDahak', item);
+                    }} title="Cek Dahak" warna={colors.black} Icons="shield-checkmark-outline" />
+                    </View>
+
+                </View>
                 }
             </View>
         )
@@ -155,18 +189,17 @@ export default function SStatus({ navigation }) {
 
 
     return (
-        <View style={{
+        <ImageBackground source={require('../../assets/back.png')} style={{
             flex: 1,
         }}>
 
             <ScrollView style={{
                 flex: 1,
-                backgroundColor: colors.primary
             }}>
                 {!open && <View style={{
                     flex: 1,
                     paddingTop: 10,
-                    backgroundColor: colors.primary
+
                 }}>
                     <FlatList data={data} renderItem={__renderItem} />
                 </View>}
@@ -328,7 +361,7 @@ export default function SStatus({ navigation }) {
             }}>
                 <MyButton onPress={() => setOpen(true)} Icons="add-circle-outline" warna={colors.secondary} title="Tambah Anggota Keluaga" />
             </View>}
-        </View >
+        </ImageBackground >
     )
 }
 

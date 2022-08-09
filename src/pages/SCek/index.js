@@ -5,6 +5,7 @@ import axios from 'axios';
 import { colors, fonts, windowWidth } from '../../utils';
 import { MyButton } from '../../components';
 import { apiURL } from '../../utils/localStorage';
+import { ImageBackground } from 'react-native';
 
 
 export default function SCek({ navigation, route }) {
@@ -42,12 +43,12 @@ export default function SCek({ navigation, route }) {
         { 'pertanyaan': 'Demam saat malam hari', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Cepat lelah', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Batuk/dahak campur darah', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Apakah ada keluarga yang minum obat selama 6 bulan', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'terdapat anggota keluarga yang minum obat selama 6 bulan/ anggota keluarga pernah menderita TBC', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Pernah minum obat selama 6 bulan', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Berat badan turun', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Nafsu makan turun', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Sedang mengkonsumsi obat jangka panjang dan tidak boleh terlambat', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Pembekakan leher / Ketiak', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Terdapat benjolan pada ketiak, leher atau selangkangan', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
 
 
 
@@ -102,8 +103,7 @@ export default function SCek({ navigation, route }) {
                     }}>{tanya}</Text>
                     <View style={{ marginVertical: 5, flexDirection: 'row' }}>
 
-                        <TouchableOpacity style={{
-                        }} onPress={() => {
+                        <TouchableOpacity style={pilih[no] == a ? styles.cek : styles.bulat} onPress={() => {
                             setJawaban({
                                 ...jawaban,
                                 [no]: jawab == 'a' ? 1 : 0
@@ -113,7 +113,8 @@ export default function SCek({ navigation, route }) {
                                 ...pilih,
                                 [no]: a
                             })
-                        }} style={pilih[no] == a ? styles.cek : styles.bulat}>
+                        }}
+                        >
                             <Text style={pilih[no] == a ? styles.txtOK : styles.txt}>{a}</Text>
                         </TouchableOpacity>
 
@@ -141,9 +142,8 @@ export default function SCek({ navigation, route }) {
 
 
     return (
-        <SafeAreaView style={{
-
-            backgroundColor: colors.primary
+        <ImageBackground source={require('../../assets/back.png')} style={{
+            flex: 1,
         }}>
             <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -181,6 +181,42 @@ export default function SCek({ navigation, route }) {
                                 navigation.goBack()
                             })
 
+                        } else if (jawaban[6] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+                        } else if (jawaban[5] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+                        } else if (jawaban[1] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
                         } else {
                             console.log('Aman');
                             axios.post(apiURL + 'update_status.php', {
@@ -198,7 +234,7 @@ export default function SCek({ navigation, route }) {
 
 
 
-        </SafeAreaView>
+        </ImageBackground>
     )
 }
 

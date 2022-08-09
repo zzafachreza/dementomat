@@ -10,6 +10,8 @@ import SEdukasi from './SEdukasi';
 import SObat from './SObat';
 import SStatus from './SStatus';
 import SCekDahak from './SCekDahak';
+import SBerat from './SBerat';
+
 
 
 
@@ -35,7 +37,8 @@ export {
   Register,
   SEdukasi,
   SObat,
-  SStatus
+  SStatus,
+  SBerat
 
 
 };

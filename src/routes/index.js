@@ -14,6 +14,7 @@ import {
   SEdukasi,
   SStatus,
   SCekDahak,
+  SBerat,
 } from '../pages';
 import { colors } from '../utils';
 
@@ -50,6 +51,19 @@ export default function Router() {
         options={{
           headerShown: true,
           headerTitle: 'Register',
+          headerStyle: {
+            backgroundColor: colors.secondary,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
+
+      <Stack.Screen
+        name="SBerat"
+        component={SBerat}
+        options={{
+          headerShown: true,
+          headerTitle: 'Riwayat Berat Badan',
           headerStyle: {
             backgroundColor: colors.secondary,
           },
@@ -138,7 +152,7 @@ export default function Router() {
         component={SEdukasi}
         options={{
           headerShown: true,
-          headerTitle: 'Vidio Edukasi',
+          headerTitle: 'Video Edukasi',
           headerStyle: {
             backgroundColor: colors.secondary,
           },

@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { colors, fonts, windowHeight, windowWidth } from '../../utils';
 import { Icon } from 'react-native-elements'
 import { getData, storeData } from '../../utils/localStorage';
+import { FlatListSlider } from 'react-native-flatlist-slider'
+import { MySlider } from '../../components';
+import MyCarouser from '../../components/MyCarouser';
+import { ImageBackground } from 'react-native';
 
 export default function Home({ navigation }) {
 
@@ -39,26 +43,40 @@ export default function Home({ navigation }) {
 
     })
   }, []);
+
+  const images = [
+    {
+      image: 'https://images.unsplash.com/photo-1567226475328-9d6baaf565cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
+      desc: 'Silent Waters in the mountains in midst of Himilayas',
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1455620611406-966ca6889d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1130&q=80',
+      desc:
+        'Red fort in India New Delhi is a magnificient masterpeiece of humans',
+    },
+  ]
+
+
+
   return (
-    <SafeAreaView style={{
+    <ImageBackground source={require('../../assets/back.png')} style={{
       flex: 1,
-      backgroundColor: colors.primary
     }}>
       <View style={{
-        flex: 1,
-        backgroundColor: colors.secondary,
         borderBottomLeftRadius: 50,
         borderBottomRightRadius: 50,
         paddingHorizontal: 20,
         paddingBottom: 10,
+        marginBottom: 10,
         flexDirection: 'row'
       }}>
         <View style={{
           flex: 1,
           height: 80,
+
         }}>
-          <Text style={styles.txt}>Selamt datang,{user.nama_lengkap}</Text>
-          <Text style={styles.txtLogo}>DEMEN TOMAT</Text>
+          <Text style={styles.txt}>Selamat datang,{user.nama_lengkap}</Text>
+          <Text style={styles.txtLogo}>SI DEMEN TOMAT</Text>
           <Text style={styles.txt}>Deteksi Dini dan Pemantauan Tuberkulosis
             Kebakkramat</Text>
         </View>
@@ -92,21 +110,12 @@ export default function Home({ navigation }) {
 
 
       </View>
+
+
       <View style={{
         flex: 3,
-        backgroundColor: colors.primary,
       }}>
-        <View style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: -100,
-        }}>
-          <Image source={require('../../assets/slide.png')} style={{
-            width: '90%',
-            height: 200,
-            borderRadius: 20,
-          }} />
-        </View>
+        <MyCarouser />
         <View style={{
           flexDirection: 'row',
           justifyContent: 'space-around',
@@ -121,7 +130,7 @@ export default function Home({ navigation }) {
           marginVertical: 10,
         }}>
           {/* <DataMenu onPress={() => navigation.navigate('SObat')} judul="Pemantauan Minum Obat" img={require('../../assets/A3.png')} /> */}
-          <DataMenu onPress={() => navigation.navigate('SEdukasi')} judul="Vidio Edukasi" img={require('../../assets/A4.png')} />
+          <DataMenu onPress={() => navigation.navigate('SEdukasi')} judul="Video Edukasi" img={require('../../assets/A4.png')} />
         </View>
         <View style={{
           flexDirection: 'row',
@@ -131,25 +140,25 @@ export default function Home({ navigation }) {
           <DataMenu onPress={() => navigation.navigate('STentang')} judul="Kontak Info" img={require('../../assets/A5.png')} />
         </View>
       </View>
-    </SafeAreaView>
+    </ImageBackground>
   )
 }
 
 const styles = StyleSheet.create({
   txt: {
     fontFamily: fonts.secondary[400],
-    fontSize: 12,
+    fontSize: 11,
     color: colors.white,
   }
   , txt2: {
     fontFamily: fonts.secondary[600],
-    fontSize: 14,
+    fontSize: 13,
     marginBottom: 20,
     color: colors.primary,
   },
   txtLogo: {
     fontFamily: fonts.secondary[600],
-    fontSize: 30,
+    fontSize: 25,
     marginBottom: 5,
     color: colors.white,
   }, txtLogo2: {

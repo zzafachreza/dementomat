@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { ImageBackground } from 'react-native';
 import {
   StyleSheet,
   Text,
@@ -11,30 +12,24 @@ import { colors, fonts, windowHeight, windowWidth } from '../../utils';
 import { getData } from '../../utils/localStorage';
 
 export default function Splash({ navigation }) {
-  const top = new Animated.Value(0.3);
+  const w = new Animated.Value(0.1);
+  const h = new Animated.Value(0);
 
-  const animasi = () => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(top, {
-          toValue: 1,
-          duration: 1000,
-        }),
-        Animated.timing(top, {
-          toValue: 0.3,
-          duration: 1000,
-        }),
-      ]),
-      {
-        iterations: 1,
-      },
-    ).start();
-  };
+  Animated.timing(w, {
+    toValue: windowWidth / 23,
+    duration: 1000,
+  }).start();
+
+  Animated.timing(h, {
+    toValue: 100,
+    duration: 1000,
+  }).start();
+
 
 
 
   useEffect(() => {
-    animasi();
+
 
 
     const unsubscribe = getData('user').then(res => {
@@ -57,24 +52,45 @@ export default function Splash({ navigation }) {
 
 
   return (
-    <View
+    <ImageBackground
+      source={require('../../assets/back.png')}
       style={{
         flex: 1,
-        backgroundColor: colors.primary,
         paddingBottom: 20,
       }}>
+
       <View style={{
-        flex: 1,
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+
+        <Animated.Text style={{
+          padding: 10,
+          fontSize: w,
+          fontFamily: fonts.secondary[600],
+          margin: 20,
+
+        }}>
+          Dokter Internship Mei - Nov 2022
+        </Animated.Text>
+      </View>
+
+
+      <View style={{
+        flex: 0.9,
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: windowWidth / 10,
       }}>
+
+
         <Image
-          source={require('../../assets/logo.png')}
+          source={require('../../assets/puskesmas.png')}
           style={
             {
-              width: 200,
-              height: 230,
+              width: 180,
+              height: 210,
               marginBottom: 10,
             }
           }
@@ -102,7 +118,7 @@ export default function Splash({ navigation }) {
         fontSize: windowWidth / 20,
         textAlign: 'center',
 
-        color: colors.secondary
+        color: colors.white
       }}>
         UPT Puskesmas Kebakkramat 1
       </Text>
@@ -110,12 +126,12 @@ export default function Splash({ navigation }) {
         fontFamily: fonts.secondary[400],
         fontSize: windowWidth / 20,
         textAlign: 'center',
-        color: colors.secondary
+        color: colors.white
       }}>
         Dinas Kesehatan Karanganyar
       </Text>
 
-    </View>
+    </ImageBackground>
   );
 }
 

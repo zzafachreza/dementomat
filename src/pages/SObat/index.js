@@ -8,6 +8,7 @@ import { apiURL } from '../../utils/localStorage';
 
 import { Icon } from 'react-native-elements';
 import DatePicker from 'react-native-date-picker'
+import { ImageBackground } from 'react-native';
 export default function SObat({ navigation, route }) {
 
     const item = route.params;
@@ -42,14 +43,26 @@ export default function SObat({ navigation, route }) {
 
 
     return (
-        <SafeAreaView style={{
-
-            backgroundColor: colors.primary
-        }}>
+        <ImageBackground
+            source={require('../../assets/back.png')}
+            style={{
+                flex: 1,
+            }}>
             <ScrollView showsVerticalScrollIndicator={false}>
-
+                <TouchableOpacity onPress={() => navigation.navigate('SBerat', {
+                    nik_ktp: item.nik_ktp
+                })} style={{
+                    padding: 10,
+                    justifyContent: 'flex-end',
+                    alignItems: 'flex-end'
+                }}>
+                    <Text style={{
+                        padding: 10,
+                        backgroundColor: colors.white, borderRadius: 10,
+                    }}>Riwayat Pemantauan Obat</Text>
+                </TouchableOpacity>
                 <View style={{
-                    backgroundColor: colors.secondary,
+
                     marginBottom: 10,
                     padding: 10,
                 }}>
@@ -68,11 +81,11 @@ export default function SObat({ navigation, route }) {
                             alignItems: 'center',
                             paddingVertical: 3,
                         }}>
-                        <Icon type="ionicon" name="calendar" color={colors.secondary} size={16} />
+                        <Icon type="ionicon" name="calendar" color={colors.black} size={16} />
                         <Text
                             style={{
                                 fontFamily: fonts.secondary[600],
-                                color: colors.secondary,
+                                color: colors.black,
                                 left: 10,
                                 fontSize: 14,
 
@@ -146,7 +159,7 @@ export default function SObat({ navigation, route }) {
                         <Text
                             style={{
                                 fontFamily: fonts.secondary[600],
-                                color: colors.secondary,
+                                color: colors.black,
                                 left: 10,
                                 fontSize: 14,
 
@@ -171,7 +184,7 @@ export default function SObat({ navigation, route }) {
                             <Text
                                 style={{
                                     fontFamily: fonts.secondary[600],
-                                    color: colors.secondary,
+                                    color: colors.black,
                                     left: 10,
                                     fontSize: 14,
 
@@ -212,7 +225,7 @@ export default function SObat({ navigation, route }) {
                             <Text
                                 style={{
                                     fontFamily: fonts.secondary[600],
-                                    color: colors.secondary,
+                                    color: colors.black,
                                     left: 10,
                                     fontSize: 14,
 
@@ -254,7 +267,7 @@ export default function SObat({ navigation, route }) {
                             <Text
                                 style={{
                                     fontFamily: fonts.secondary[600],
-                                    color: colors.secondary,
+                                    color: colors.black,
                                     left: 10,
                                     fontSize: 14,
 
@@ -296,7 +309,7 @@ export default function SObat({ navigation, route }) {
                             <Text
                                 style={{
                                     fontFamily: fonts.secondary[600],
-                                    color: colors.secondary,
+                                    color: colors.black,
                                     left: 10,
                                     fontSize: 14,
 
@@ -338,7 +351,7 @@ export default function SObat({ navigation, route }) {
                             <Text
                                 style={{
                                     fontFamily: fonts.secondary[600],
-                                    color: colors.secondary,
+                                    color: colors.black,
                                     left: 10,
                                     fontSize: 14,
 
@@ -380,7 +393,7 @@ export default function SObat({ navigation, route }) {
                             <Text
                                 style={{
                                     fontFamily: fonts.secondary[600],
-                                    color: colors.secondary,
+                                    color: colors.black,
                                     left: 10,
                                     fontSize: 14,
 
@@ -422,7 +435,7 @@ export default function SObat({ navigation, route }) {
                             <Text
                                 style={{
                                     fontFamily: fonts.secondary[600],
-                                    color: colors.secondary,
+                                    color: colors.black,
                                     left: 10,
                                     fontSize: 14,
 
@@ -456,11 +469,11 @@ export default function SObat({ navigation, route }) {
                             alignItems: 'center',
                             paddingVertical: 3,
                         }}>
-                        <Icon type="ionicon" name="create-outline" color={colors.secondary} size={16} />
+                        <Icon type="ionicon" name="create-outline" color={colors.black} size={16} />
                         <Text
                             style={{
                                 fontFamily: fonts.secondary[600],
-                                color: colors.secondary,
+                                color: colors.black,
                                 left: 10,
                                 fontSize: 14,
 
@@ -542,7 +555,7 @@ export default function SObat({ navigation, route }) {
                     </View>
 
 
-
+                    <MyGap jarak={10} />
                     <MyButton onPress={() => {
 
                         console.log(kirim)
@@ -561,7 +574,7 @@ export default function SObat({ navigation, route }) {
 
 
 
-        </SafeAreaView>
+        </ImageBackground>
     )
 }
 

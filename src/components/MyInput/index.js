@@ -8,7 +8,7 @@ import { TextInput } from 'react-native-gesture-handler';
 export default function MyInput({
   onFocus,
   label,
-  labelColor = colors.secondary,
+  labelColor = colors.black,
   iconname,
   onChangeText,
   value,
@@ -21,7 +21,7 @@ export default function MyInput({
   multiline,
   label2,
   styleLabel,
-  colorIcon = colors.secondary,
+  colorIcon = colors.black,
 }) {
   return (
     <>
