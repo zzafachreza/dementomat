@@ -99,7 +99,7 @@ export default function Splash({ navigation }) {
           fontFamily: fonts.secondary[600],
           fontSize: windowWidth / 10,
           color: colors.white
-        }}>DEMEN TOMAT</Text>
+        }}>SI DEMEN TOMAT</Text>
         <Text style={{
           fontFamily: fonts.secondary[400],
           fontSize: windowWidth / 20,
@@ -108,7 +108,7 @@ export default function Splash({ navigation }) {
           color: colors.white,
           marginBottom: 10,
         }}>
-          Deteksi Dini dan Pemantauan Tuberkulosis
+          Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
           Kebakkramat
         </Text>
         <ActivityIndicator size="large" color={colors.secondary} />

@@ -59,7 +59,7 @@ export default function SObat({ navigation, route }) {
                     <Text style={{
                         padding: 10,
                         backgroundColor: colors.white, borderRadius: 10,
-                    }}>Riwayat Pemantauan Obat</Text>
+                    }}>Riwayat Berat Badan</Text>
                 </TouchableOpacity>
                 <View style={{
 

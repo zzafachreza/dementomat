@@ -43,7 +43,7 @@ export default function SCek({ navigation, route }) {
         { 'pertanyaan': 'Demam saat malam hari', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Cepat lelah', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Batuk/dahak campur darah', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'terdapat anggota keluarga yang minum obat selama 6 bulan/ anggota keluarga pernah menderita TBC', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Terdapat anggota keluarga yang minum obat selama 6 bulan/ anggota keluarga pernah menderita TBC', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Pernah minum obat selama 6 bulan', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Berat badan turun', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
         { 'pertanyaan': 'Nafsu makan turun', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },

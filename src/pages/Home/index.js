@@ -77,7 +77,7 @@ export default function Home({ navigation }) {
         }}>
           <Text style={styles.txt}>Selamat datang,{user.nama_lengkap}</Text>
           <Text style={styles.txtLogo}>SI DEMEN TOMAT</Text>
-          <Text style={styles.txt}>Deteksi Dini dan Pemantauan Tuberkulosis
+          <Text style={styles.txt}>Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
             Kebakkramat</Text>
         </View>
         <View style={{
@@ -98,12 +98,12 @@ export default function Home({ navigation }) {
             justifyContent: 'center',
             alignItems: 'center'
           }}>
-            <Icon type="ionicon" name="log-out-outline" color={colors.secondary} />
+            <Icon type="ionicon" name="log-out-outline" color={colors.white} />
             <Text style={{
               fontFamily: fonts.secondary[600],
               fontSize: windowWidth / 30,
               left: 3,
-              color: colors.secondary
+              color: colors.white
             }}>Keluar</Text>
           </TouchableOpacity>
         </View>
