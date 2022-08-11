@@ -21,20 +21,22 @@ export default function SEdukasi() {
         return (
             <TouchableOpacity onPress={() => __CekData(item.link)} style={{
                 flex: 1,
-                backgroundColor: colors.secondary,
+                backgroundColor: colors.btn_primary,
                 borderRadius: 10,
                 marginHorizontal: 10,
                 marginVertical: 5,
                 padding: 10,
+                height: 200,
 
             }}>
 
                 <Image source={require('../../assets/A4.png')} style={{
                     width: '100%',
+                    height: 100,
                     resizeMode: 'contain'
                 }} />
                 <Text style={{
-                    color: colors.white,
+                    color: colors.primary,
                     fontFamily: fonts.secondary[600],
                     textAlign: 'center'
                 }}>{item.judul}</Text>

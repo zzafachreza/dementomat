@@ -33,6 +33,14 @@ export default function MyCarouser() {
       image: require('../../assets/s2.png')
     }, {
       image: require('../../assets/s3.png')
+    }, {
+      image: require('../../assets/s4.png')
+    }, {
+      image: require('../../assets/s5.png')
+    }, {
+      image: require('../../assets/s6.png')
+    }, {
+      image: require('../../assets/s7.png')
     }
   ]);
 

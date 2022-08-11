@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Icon, ListItem, Button } from 'react-native-elements';
 import { colors } from '../../utils/colors';
-import { fonts } from '../../utils/fonts';
+import { fonts, windowWidth } from '../../utils/fonts';
 import { TextInput } from 'react-native-gesture-handler';
 
 export default function MyInput({
@@ -37,7 +37,7 @@ export default function MyInput({
             fontFamily: fonts.secondary[600],
             color: labelColor,
             left: 10,
-            fontSize: 14,
+            fontSize: windowWidth / 28,
             ...styleLabel,
           }}>
           {label}

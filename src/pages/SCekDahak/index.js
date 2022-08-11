@@ -133,9 +133,9 @@ export default function SCekDahak({ navigation, route }) {
                             }}>
                             <MyButton
                                 onPress={onPress1}
-                                colorText={colors.white}
+
                                 title="KAMERA"
-                                warna={colors.primary}
+                                warna={colors.btn_primary} colorText={colors.primary} iconColor={colors.primary}
                             />
                         </View>
                         <View
@@ -146,8 +146,7 @@ export default function SCekDahak({ navigation, route }) {
                             <MyButton
                                 onPress={onPress2}
                                 title="GALLERY"
-                                colorText={colors.white}
-                                warna={colors.secondary}
+                                warna={colors.btn_primary} colorText={colors.primary} iconColor={colors.primary}
                             />
                         </View>
                     </View>
@@ -198,7 +197,7 @@ export default function SCekDahak({ navigation, route }) {
                                 nik_ktp: item.nik_ktp,
                                 bta: foto
                             }).then(res => {
-                                Alert.alert('Demen Tomat', 'Menunggu validasi BTA')
+                                Alert.alert('Demen Tomat', 'Menunggu Validasi')
                                 console.log(res.data);
                                 navigation.goBack()
                             })
@@ -206,7 +205,7 @@ export default function SCekDahak({ navigation, route }) {
 
 
 
-                    }} Icons="checkmark-circle-outline" title="Selesai" warna={colors.secondary} />
+                    }} Icons="checkmark-circle-outline" title="Selesai" warna={colors.btn_primary} colorText={colors.primary} iconColor={colors.primary} />
                 </View>
             </ScrollView>
 

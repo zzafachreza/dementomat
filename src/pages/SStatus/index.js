@@ -116,7 +116,7 @@ export default function SStatus({ navigation }) {
                 }}>
                     <View style={{
                         flex: 1,
-                        paddingRight: 10,
+                        paddingRight: 1,
                     }}>
                         <MyButton onPress={() => {
                             navigation.navigate('SCek', item);
@@ -124,7 +124,7 @@ export default function SStatus({ navigation }) {
                     </View>
                     <View style={{
                         flex: 1,
-                        paddingLeft: 10,
+                        paddingLeft: 1,
                     }}>
                         <MyButton onPress={() => {
                             navigation.navigate('SObat', item);
@@ -137,7 +137,7 @@ export default function SStatus({ navigation }) {
                 }}>
                     <View style={{
                         flex: 1,
-                        paddingRight: 10,
+                        paddingRight: 1,
                     }}>
                         <MyButton onPress={() => {
                             navigation.navigate('SCek', item);
@@ -145,7 +145,7 @@ export default function SStatus({ navigation }) {
                     </View>
                     <View style={{
                         flex: 1,
-                        paddingLeft: 10,
+                        paddingLeft: 1,
                     }}><MyButton onPress={() => {
                         navigation.navigate('SCekDahak', item);
                     }} title="Cek Dahak" warna={colors.black} Icons="shield-checkmark-outline" />
@@ -347,7 +347,7 @@ export default function SStatus({ navigation }) {
                             })
 
 
-                        }} Icons="checkmark-circle-outline" warna={colors.secondary} title="Simpan" />
+                        }} Icons="checkmark-circle-outline" warna={colors.btn_primary} colorText={colors.primary} iconColor={colors.primary} title="Simpan" />
                     </View>
                 </View>}
 
@@ -359,7 +359,7 @@ export default function SStatus({ navigation }) {
                 padding: 10,
                 backgroundColor: colors.primary
             }}>
-                <MyButton onPress={() => setOpen(true)} Icons="add-circle-outline" warna={colors.secondary} title="Tambah Anggota Keluaga" />
+                <MyButton onPress={() => setOpen(true)} Icons="add-circle-outline" warna={colors.btn_primary} colorText={colors.primary} iconColor={colors.primary} title="Tambah Anggota Keluaga" />
             </View>}
         </ImageBackground >
     )

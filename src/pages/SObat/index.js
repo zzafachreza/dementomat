@@ -568,7 +568,7 @@ export default function SObat({ navigation, route }) {
 
 
 
-                    }} Icons="checkmark-circle-outline" title="Selesai" warna={colors.secondary} />
+                    }} Icons="checkmark-circle-outline" title="Selesai" warna={colors.btn_primary} iconColor={colors.primary} colorText={colors.primary} />
                 </View>
             </ScrollView>
 

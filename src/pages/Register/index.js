@@ -192,11 +192,11 @@ export default function Register({ navigation }) {
                         alignItems: 'center',
                         paddingVertical: 3,
                     }}>
-                    <Icon type="ionicon" name="map" color={colors.secondary} size={16} />
+                    <Icon type="ionicon" name="map" color={colors.black} size={16} />
                     <Text
                         style={{
                             fontFamily: fonts.secondary[600],
-                            color: colors.secondary,
+                            color: colors.black,
                             left: 10,
                             fontSize: 14,
 

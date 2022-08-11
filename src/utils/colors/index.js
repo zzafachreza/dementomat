@@ -8,5 +8,6 @@ export const colors = {
   danger: '#dc3545',
   black: 'black',
   white: 'white',
+  btn_primary: '#A3E4D7',
   border: '#CDCDCD',
 };

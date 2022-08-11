@@ -69,6 +69,7 @@ export default function Splash({ navigation }) {
           padding: 10,
           fontSize: w,
           fontFamily: fonts.secondary[600],
+          color: colors.white,
           margin: 20,
 
         }}>
@@ -89,20 +90,20 @@ export default function Splash({ navigation }) {
           source={require('../../assets/puskesmas.png')}
           style={
             {
-              width: 180,
-              height: 210,
+              width: 150,
+              height: 180,
               marginBottom: 10,
             }
           }
         />
         <Text style={{
           fontFamily: fonts.secondary[600],
-          fontSize: windowWidth / 10,
+          fontSize: windowWidth / 15,
           color: colors.white
         }}>SI DEMEN TOMAT</Text>
         <Text style={{
           fontFamily: fonts.secondary[400],
-          fontSize: windowWidth / 20,
+          fontSize: windowWidth / 28,
           textAlign: 'center',
 
           color: colors.white,
@@ -115,7 +116,7 @@ export default function Splash({ navigation }) {
       </View>
       <Text style={{
         fontFamily: fonts.secondary[400],
-        fontSize: windowWidth / 20,
+        fontSize: windowWidth / 25,
         textAlign: 'center',
 
         color: colors.white
@@ -124,7 +125,7 @@ export default function Splash({ navigation }) {
       </Text>
       <Text style={{
         fontFamily: fonts.secondary[400],
-        fontSize: windowWidth / 20,
+        fontSize: windowWidth / 25,
         textAlign: 'center',
         color: colors.white
       }}>

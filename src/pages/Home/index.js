@@ -13,7 +13,7 @@ export default function Home({ navigation }) {
   const DataMenu = ({ img, judul, onPress }) => {
     return (
       <TouchableOpacity onPress={onPress} style={{
-        backgroundColor: colors.secondary,
+        backgroundColor: colors.btn_primary,
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
@@ -28,7 +28,7 @@ export default function Home({ navigation }) {
         }} />
         <Text style={{
           fontFamily: fonts.secondary[600],
-          color: colors.white,
+          color: colors.primary,
           textAlign: 'center',
           fontSize: 16
         }}>{judul}</Text>
@@ -75,7 +75,7 @@ export default function Home({ navigation }) {
           height: 80,
 
         }}>
-          <Text style={styles.txt}>Selamat datang,{user.nama_lengkap}</Text>
+          <Text style={styles.txt}>Selamat datang, {user.nama_lengkap}</Text>
           <Text style={styles.txtLogo}>SI DEMEN TOMAT</Text>
           <Text style={styles.txt}>Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
             Kebakkramat</Text>
@@ -94,16 +94,16 @@ export default function Home({ navigation }) {
             flexDirection: 'row',
             padding: 10,
             borderRadius: 10,
-            backgroundColor: colors.primary,
+            backgroundColor: colors.btn_primary,
             justifyContent: 'center',
             alignItems: 'center'
           }}>
-            <Icon type="ionicon" name="log-out-outline" color={colors.white} />
+            <Icon type="ionicon" name="log-out-outline" color={colors.primary} />
             <Text style={{
               fontFamily: fonts.secondary[600],
               fontSize: windowWidth / 30,
               left: 3,
-              color: colors.white
+              color: colors.primary
             }}>Keluar</Text>
           </TouchableOpacity>
         </View>
@@ -147,19 +147,19 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   txt: {
     fontFamily: fonts.secondary[400],
-    fontSize: 11,
+    fontSize: windowWidth / 30,
     color: colors.white,
   }
   , txt2: {
     fontFamily: fonts.secondary[600],
-    fontSize: 13,
+    fontSize: windowWidth / 28,
     marginBottom: 20,
     color: colors.primary,
   },
   txtLogo: {
     fontFamily: fonts.secondary[600],
-    fontSize: 25,
-    marginBottom: 5,
+    fontSize: windowWidth / 20,
+    marginBottom: 0,
     color: colors.white,
   }, txtLogo2: {
     fontFamily: fonts.secondary[400],

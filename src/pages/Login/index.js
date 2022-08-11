@@ -63,18 +63,19 @@ export default function ({ navigation }) {
       <ScrollView style={{ padding: 10, flex: 1 }}>
         <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingTop: 10 }}>
 
-          <Image source={require('../../assets/logo.png')} style={{
-            width: 100,
-            height: 100
+          <Image source={require('../../assets/puskesmas.png')} style={{
+            width: 95,
+            height: 105,
+            resizeMode: 'contain'
           }} />
           <Text style={{
             fontFamily: fonts.secondary[600],
-            fontSize: windowWidth / 10,
+            fontSize: windowWidth / 15,
             color: colors.white
           }}>SI DEMEN TOMAT</Text>
           <Text style={{
             fontFamily: fonts.secondary[400],
-            fontSize: windowWidth / 20,
+            fontSize: windowWidth / 28,
             textAlign: 'center',
 
             color: colors.white,
@@ -109,7 +110,9 @@ export default function ({ navigation }) {
           {!loading && <MyButton
             onPress={masuk}
             title="LOGIN SEKARANG"
-            warna={colors.secondary}
+            colorText={colors.primary}
+            iconColor={colors.primary}
+            warna={colors.btn_primary}
             Icons="log-in-outline"
           />}
           <TouchableOpacity onPress={() => navigation.navigate('Register')} style={{

@@ -52,7 +52,8 @@ export default function Router() {
           headerShown: true,
           headerTitle: 'Register',
           headerStyle: {
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.primary,
+            elevation: 0,
           },
           headerTintColor: '#fff',
         }}
@@ -65,7 +66,8 @@ export default function Router() {
           headerShown: true,
           headerTitle: 'Riwayat Berat Badan',
           headerStyle: {
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.primary,
+            elevation: 0,
           },
           headerTintColor: '#fff',
         }}
@@ -87,7 +89,8 @@ export default function Router() {
           headerShown: true,
           headerTitle: 'Skrinning',
           headerStyle: {
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.primary,
+            elevation: 0,
           },
           headerTintColor: '#fff',
         }}
@@ -101,7 +104,8 @@ export default function Router() {
           headerShown: true,
           headerTitle: 'Hasil BTA',
           headerStyle: {
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.primary,
+            elevation: 0,
           },
           headerTintColor: '#fff',
         }}
@@ -115,6 +119,7 @@ export default function Router() {
           headerTitle: 'Indeks Penyakit',
           headerStyle: {
             backgroundColor: colors.primary,
+            elevation: 0,
           },
           headerTintColor: '#fff',
         }}
@@ -128,7 +133,8 @@ export default function Router() {
           headerShown: true,
           headerTitle: 'Kontak Info',
           headerStyle: {
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.primary,
+            elevation: 0,
           },
           headerTintColor: '#fff',
         }}
@@ -141,7 +147,8 @@ export default function Router() {
           headerShown: true,
           headerTitle: 'Pemantauan Minum Obat',
           headerStyle: {
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.primary,
+            elevation: 0,
           },
           headerTintColor: '#fff',
         }}
@@ -154,7 +161,8 @@ export default function Router() {
           headerShown: true,
           headerTitle: 'Video Edukasi',
           headerStyle: {
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.primary,
+            elevation: 0,
           },
           headerTintColor: '#fff',
         }}
@@ -167,7 +175,8 @@ export default function Router() {
           headerShown: true,
           headerTitle: 'Status Keluarga',
           headerStyle: {
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.primary,
+            elevation: 0,
           },
           headerTintColor: '#fff',
         }}
@@ -180,7 +189,8 @@ export default function Router() {
           headerShown: true,
           headerTitle: 'Skrinning',
           headerStyle: {
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.primary,
+            elevation: 0,
           },
           headerTintColor: '#fff',
         }}

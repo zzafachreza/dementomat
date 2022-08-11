@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {fonts} from '../../utils/fonts';
-import {Icon} from 'react-native-elements';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { fonts, windowWidth } from '../../utils/fonts';
+import { Icon } from 'react-native-elements';
 
 export default function MyButton({
   title,
@@ -19,11 +19,11 @@ export default function MyButton({
     <TouchableOpacity
       style={styles(warna, radius, borderSize, borderColor).btn}
       onPress={onPress}>
-      <Icon type="ionicon" name={Icons} color={iconColor} size={18} />
+      <Icon type="ionicon" name={Icons} color={iconColor} size={windowWidth / 25} />
       <Text
         style={{
           color: colorText,
-          fontSize: 18,
+          fontSize: windowWidth / 28,
           left: 5,
           fontFamily: fonts.primary[600],
           // fontWeight: fontWeight,
