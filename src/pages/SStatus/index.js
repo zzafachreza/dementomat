@@ -153,6 +153,12 @@ export default function SStatus({ navigation }) {
 
                 </View>
                 }
+
+                {item.status_keluarga == "Aman" &&
+                    < MyButton onPress={() => {
+                        navigation.navigate('SCek', item);
+                    }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
+                }
             </View>
         )
     }
@@ -276,11 +282,11 @@ export default function SStatus({ navigation }) {
                                 alignItems: 'center',
                                 paddingVertical: 3,
                             }}>
-                            <Icon type="ionicon" name="calendar" color={colors.secondary} size={16} />
+                            <Icon type="ionicon" name="calendar" color={colors.black} size={16} />
                             <Text
                                 style={{
                                     fontFamily: fonts.secondary[600],
-                                    color: colors.secondary,
+                                    color: colors.black,
                                     left: 10,
                                     fontSize: 14,
 

@@ -102,7 +102,7 @@ export default function Router() {
         component={SCekDahak}
         options={{
           headerShown: true,
-          headerTitle: 'Hasil BTA',
+          headerTitle: 'Hasil Tes Dahak',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0,

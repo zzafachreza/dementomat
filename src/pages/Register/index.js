@@ -241,7 +241,9 @@ export default function Register({ navigation }) {
                 <MyGap jarak={20} />
                 {!loading &&
                     <MyButton
-                        warna={colors.secondary}
+                        colorText={colors.primary}
+                        iconColor={colors.primary}
+                        warna={colors.btn_primary}
                         title="REGISTER"
                         Icons="log-in"
                         onPress={simpan}

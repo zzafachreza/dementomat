@@ -228,7 +228,7 @@ export default function SCek({ navigation, route }) {
                                 navigation.goBack()
                             })
                         }
-                    }} Icons="checkmark-circle-outline" title="Selesai" warna={colors.secondary} />
+                    }} Icons="checkmark-circle-outline" title="Selesai" warna={colors.btn_primary} colorText={colors.primary} iconColor={colors.primary} />
                 </View>
             </ScrollView>
 
