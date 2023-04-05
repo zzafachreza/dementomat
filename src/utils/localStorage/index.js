@@ -21,5 +21,6 @@ export const getData = async key => {
 
 
 export const apiURL = 'https://dementomat.zavalabs.com/api/';
+export const apiURLNEW = 'https://dementomat.zavalabs.com/myapi/';
 export const wenURL = apiURL.replace("api/", "");
 

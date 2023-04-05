@@ -64,17 +64,6 @@ export default function Splash({ navigation }) {
         justifyContent: 'center',
         alignItems: 'center'
       }}>
-
-        <Animated.Text style={{
-          padding: 10,
-          fontSize: w,
-          fontFamily: fonts.secondary[600],
-          color: colors.white,
-          margin: 20,
-
-        }}>
-          Dokter Internship Mei - Nov 2022
-        </Animated.Text>
       </View>
 
 
@@ -109,8 +98,7 @@ export default function Splash({ navigation }) {
           color: colors.white,
           marginBottom: 10,
         }}>
-          Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
-          Kebakkramat
+          Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis Mandiri dan Terpadu
         </Text>
         <ActivityIndicator size="large" color={colors.secondary} />
       </View>
@@ -121,16 +109,9 @@ export default function Splash({ navigation }) {
 
         color: colors.white
       }}>
-        UPT Puskesmas Kebakkramat 1
+        Dinas Kesehatan Kabupaten Karanganyar
       </Text>
-      <Text style={{
-        fontFamily: fonts.secondary[400],
-        fontSize: windowWidth / 25,
-        textAlign: 'center',
-        color: colors.white
-      }}>
-        Dinas Kesehatan Karanganyar
-      </Text>
+
 
     </ImageBackground>
   );

@@ -81,8 +81,9 @@ export default function ({ navigation }) {
             color: colors.white,
             marginBottom: 10,
           }}>
-            Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
-            Kebakkramat
+            {/* Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
+            Kebakkramat */}
+            Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis Mandiri dan Terpadu
           </Text>
 
         </View>

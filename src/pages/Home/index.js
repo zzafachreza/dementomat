@@ -77,8 +77,11 @@ export default function Home({ navigation }) {
         }}>
           <Text style={styles.txt}>Selamat datang, {user.nama_lengkap}</Text>
           <Text style={styles.txtLogo}>SI DEMEN TOMAT</Text>
-          <Text style={styles.txt}>Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
-            Kebakkramat</Text>
+          <Text style={styles.txt}>
+            {/* Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
+            Kebakkramat */}
+            Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis Mandiri dan Terpadu
+          </Text>
         </View>
         <View style={{
           justifyContent: 'center',

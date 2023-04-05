@@ -6,12 +6,15 @@ import { colors, fonts, windowWidth } from '../../utils';
 import { MyButton, MyGap, MyInput } from '../../components';
 import { apiURL } from '../../utils/localStorage';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-
+import DatePicker from 'react-native-date-picker'
+import { Icon } from 'react-native-elements';
 export default function SCekDahak({ navigation, route }) {
 
     const item = route.params;
     const [bta, setBta] = useState('');
     const [kirim, setKirim] = useState(route.params);
+    const [date, setDate] = useState(new Date())
+    const [openDate, setOpenDate] = useState(false)
 
 
     const MYListData = ({ title, person }) => {
@@ -157,6 +160,19 @@ export default function SCekDahak({ navigation, route }) {
             </View>
         );
     };
+
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => {
+        if (!isEnabled) {
+            setIsEnabled(true);
+
+        } else {
+            setIsEnabled(false);
+
+        }
+    };
+
+
     return (
         <SafeAreaView style={{
 
@@ -178,29 +194,143 @@ export default function SCekDahak({ navigation, route }) {
                 <View style={{
                     padding: 10,
                 }}>
+                    <View style={{
+                        flexDirection: 'row'
+                    }}>
+                        <Text style={{
+                            flex: 1,
+                            fontFamily: fonts.secondary[600],
+                            color: colors.black
+                        }}>Apakah anda sudah cek dahak ?</Text>
 
-                    <UploadFoto
+                        <TouchableOpacity onPress={() => {
+                            setIsEnabled(true)
+                        }} style={{
+                            padding: 10,
+                            marginHorizontal: 5,
+                            borderRadius: 10,
+                            backgroundColor: isEnabled ? colors.success : colors.border
+                        }}>
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                color: isEnabled ? colors.white : colors.black
+                            }}>Sudah</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => {
+                            setIsEnabled(false)
+                        }} style={{
+                            padding: 10,
+                            marginHorizontal: 5,
+                            borderRadius: 10,
+                            backgroundColor: !isEnabled ? colors.success : colors.border
+                        }}>
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                color: !isEnabled ? colors.white : colors.black
+                            }}>Belum</Text>
+                        </TouchableOpacity>
+
+                    </View>
+                    {/* <UploadFoto
                         onPress1={() => getCamera(1)}
                         onPress2={() => getGallery(1)}
-                        label="Upload Bukti Foto"
+                        label="Apakah anda sudah cek dahak?"
                         foto={foto}
-                    />
+                    /> */}
+
+
+                    {isEnabled && <>
+
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                paddingVertical: 3,
+                            }}>
+                            <Icon type="ionicon" name="calendar" color={colors.black} size={16} />
+                            <Text
+                                style={{
+                                    fontFamily: fonts.secondary[600],
+                                    color: colors.black,
+                                    left: 10,
+                                    fontSize: 14,
+
+                                }}>
+                                Tanggal Pemeriksaan Dahak
+                            </Text>
+                        </View>
+                        <TouchableOpacity onPress={() => setOpenDate(true)} style={{
+                            backgroundColor: colors.white,
+                            width: '100%',
+                            height: 50,
+                            borderRadius: 5,
+                            elevation: 3,
+                        }}>
+                            <Text style={{
+                                marginVertical: 15,
+                                marginLeft: 10,
+                                fontFamily: fonts.secondary[400],
+                                fontSize: 14
+                            }}>{kirim.tanggal}</Text>
+                        </TouchableOpacity>
+
+                        <DatePicker
+                            modal
+                            mode='date'
+                            open={openDate}
+                            date={date}
+                            onConfirm={(date) => {
+                                setOpenDate(false)
+                                setDate(date)
+                                // setKirim({
+                                //     ...kirim,
+                                //     tanggal_lahir: date
+                                // })
+                                console.log(date);
+
+                                var today = new Date(date);
+                                var dd = String(today.getDate()).padStart(2, '0');
+                                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                                var yyyy = today.getFullYear();
+
+
+                                today = yyyy + '-' + mm + '-' + dd;
+                                console.log(today);
+
+                                setKirim({
+                                    ...kirim,
+                                    tanggal: yyyy + '-' + mm + '-' + dd
+                                })
+
+                            }}
+                            onCancel={() => {
+                                setOpenDate(false)
+                            }}
+                        />
+                    </>}
+
+
                     <MyGap jarak={20} />
                     <MyButton onPress={() => {
 
 
 
-                        if (foto.length == 0) {
-                            Alert.alert('Informasi Demen Tomat', 'BTA Wajib di isi !');
+
+                        if (!isEnabled) {
+                            Alert.alert('Demen Tomat', 'Silahkan lakukan pengecekan dahak ke Puskesmas');
+                            navigation.goBack();
+
                         } else {
                             axios.post(apiURL + 'update_pengobatan.php', {
                                 nik_ktp: item.nik_ktp,
-                                bta: foto
+                                tanggal: kirim.tanggal,
                             }).then(res => {
-                                Alert.alert('Demen Tomat', 'Menunggu Validasi')
+                                // Alert.alert('Demen Tomat', 'Menunggu Validasi')
+                                Alert.alert('Demen Tomat', 'Menunggu konfirmasi hasil TCM')
                                 console.log(res.data);
                                 navigation.goBack()
                             })
+
                         }
 
 

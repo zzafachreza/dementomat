@@ -11,6 +11,8 @@ import SObat from './SObat';
 import SStatus from './SStatus';
 import SCekDahak from './SCekDahak';
 import SBerat from './SBerat';
+import KeluargaEdit from './KeluargaEdit';
+import Scek2 from './SCek2';
 
 
 
@@ -38,7 +40,9 @@ export {
   SEdukasi,
   SObat,
   SStatus,
-  SBerat
+  SBerat,
+  KeluargaEdit,
+  Scek2
 
 
 };

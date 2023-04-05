@@ -1,9 +1,25 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { colors, fonts, windowWidth } from '../../utils'
 import { ImageBackground } from 'react-native'
+import axios from 'axios';
+import { apiURLNEW } from '../../utils/localStorage';
 
 export default function STentang() {
+
+    const [data, setData] = useState([]);
+    const [open, setOpen] = useState(false);
+    useEffect(() => {
+
+        axios.post(apiURLNEW + 'kontak').then(res => {
+            {
+                setOpen(true);
+                console.log(res.data);
+                setData(res.data);
+            }
+        })
+
+    }, [])
 
     const MYListData = ({ title, person }) => {
         return (
@@ -31,12 +47,14 @@ export default function STentang() {
             flex: 1,
         }}>
 
-            <MYListData title="Koordinator Puskesmas Kebakkramat 1" person="Suyamti - 0821-3531-3745" />
-            <MYListData title="Bidan Desa Kemiri" person="SIndah - 0813-2925-3935" />
-            <MYListData title="Bidan Desa Waru" person="Sri Maryatun - 0858-6749-5335" />
-            <MYListData title="Bidan Desa Nangsri" person="Yuni - 0821-3438-0758" />
-            <MYListData title="Bidan Desa Macanan" person="Witri - 0813-2924-6554" />
-            <MYListData title="Bidan Desa Kebak" person="Vety - 0857-2840-2020" />
+            {open && data.map(i => {
+                return (
+                    <MYListData title={i.judul} person={i.nama + " - " + i.telepon} />
+                )
+            })}
+
+            {!open && <ActivityIndicator color={colors.white} />}
+
         </ImageBackground>
     )
 }

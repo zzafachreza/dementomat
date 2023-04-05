@@ -15,6 +15,8 @@ import {
   SStatus,
   SCekDahak,
   SBerat,
+  KeluargaEdit,
+  Scek2,
 } from '../pages';
 import { colors } from '../utils';
 
@@ -60,6 +62,20 @@ export default function Router() {
       />
 
       <Stack.Screen
+        name="KeluargaEdit"
+        component={KeluargaEdit}
+        options={{
+          headerShown: true,
+          headerTitle: 'Edit Anggota Keluarga',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
+
+      <Stack.Screen
         name="SBerat"
         component={SBerat}
         options={{
@@ -88,6 +104,20 @@ export default function Router() {
         options={{
           headerShown: true,
           headerTitle: 'Skrinning',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
+
+      <Stack.Screen
+        name="SCek2"
+        component={Scek2}
+        options={{
+          headerShown: true,
+          headerTitle: 'Skrinning Anak',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0,

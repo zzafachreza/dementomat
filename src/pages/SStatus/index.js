@@ -1,30 +1,30 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { colors, fonts, windowHeight, windowWidth } from '../../utils'
 import axios from 'axios'
-import { apiURL, getData } from '../../utils/localStorage';
+import { apiURL, apiURLNEW, getData } from '../../utils/localStorage';
 import YoutubePlayer from "react-native-youtube-iframe";
 import { MyButton, MyGap, MyInput } from '../../components';
 import DatePicker from 'react-native-date-picker'
 import { useIsFocused } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 import { ImageBackground } from 'react-native';
+import moment from 'moment';
+import { showMessage } from 'react-native-flash-message';
+
+
 export default function SStatus({ navigation }) {
 
     const [date, setDate] = useState(new Date())
     const [openDate, setOpenDate] = useState(false)
-
+    const [open, setOpen] = useState(false);
     const isFocused = useIsFocused();
     const [kirim, setKirim] = useState({});
     const [data, setData] = useState([]);
     const [user, setUser] = useState({});
-    const [open, setOpen] = useState(false);
 
-    const __CekData = x => {
 
-        setUrlyoutube(x);
-        setPlaying(true);
-    }
+
 
     const __renderItem = ({ item }) => {
         return (
@@ -38,7 +38,59 @@ export default function SStatus({ navigation }) {
                 elevation: 3,
 
             }}>
+                <View style={{
+                    alignSelf: 'flex-end',
+                    flexDirection: 'row'
+                }}>
+                    <TouchableOpacity onPress={() => navigation.navigate('KeluargaEdit', item)} style={{
+                        paddingHorizontal: 10,
+                        backgroundColor: colors.primary,
+                        width: 80,
+                        marginHorizontal: 5,
+                        borderRadius: 10,
+                        justifyContent: 'center',
+                        alignSelf: 'flex-end',
+                        alignContent: 'center'
+                    }}>
+                        <Text style={{
+                            color: colors.white,
+                            textAlign: 'center',
+                            fontFamily: fonts.secondary[600]
+                        }}>Edit</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => Alert.alert('Hapus Keluarga', 'Apakah kamu akan hapus keluarga' + item.nama_keluarga + ' ?', [
 
+                        { text: 'BATAL' },
+                        {
+                            text: 'HAPUS', onPress: () => {
+                                axios.post(apiURLNEW + 'keluarga_delete', {
+                                    id: item.id
+                                }).then(res => {
+                                    showMessage({
+                                        type: 'success',
+                                        message: 'Berhasil dihapus !'
+                                    })
+                                    getMyFirst();
+                                })
+                            }
+                        }
+
+                    ])} style={{
+                        paddingHorizontal: 10,
+                        backgroundColor: colors.black,
+                        width: 80,
+                        borderRadius: 10,
+                        justifyContent: 'center',
+                        alignSelf: 'flex-end',
+                        alignContent: 'center'
+                    }}>
+                        <Text style={{
+                            color: colors.white,
+                            textAlign: 'center',
+                            fontFamily: fonts.secondary[600]
+                        }}>Hapus</Text>
+                    </TouchableOpacity>
+                </View>
                 <View style={{
                     flexDirection: 'row'
                 }}>
@@ -69,6 +121,12 @@ export default function SStatus({ navigation }) {
                             color: colors.secondary,
                             fontFamily: fonts.secondary[400],
                         }}>{item.tanggal_lahir}</Text>
+                        <Text style={{
+                            color: colors.black,
+                            fontFamily: fonts.secondary[400],
+                        }}>{item.umur}</Text>
+
+
                         <Text style={{
                             color: colors.secondary,
                             fontFamily: fonts.secondary[600],
@@ -106,7 +164,11 @@ export default function SStatus({ navigation }) {
                 {/* button screening */}
 
                 {item.status_keluarga == "Belum Mengisi" && <MyButton onPress={() => {
-                    navigation.navigate('SCek', item);
+                    if (item.tahun < 17) {
+                        navigation.navigate('SCek2', item);
+                    } else {
+                        navigation.navigate('SCek', item);
+                    }
                 }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
                 }
 
@@ -119,7 +181,12 @@ export default function SStatus({ navigation }) {
                         paddingRight: 1,
                     }}>
                         <MyButton onPress={() => {
-                            navigation.navigate('SCek', item);
+                            // alert(item.tahun)
+                            if (item.tahun < 17) {
+                                navigation.navigate('SCek2', item);
+                            } else {
+                                navigation.navigate('SCek', item);
+                            }
                         }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
                     </View>
                     <View style={{
@@ -140,7 +207,11 @@ export default function SStatus({ navigation }) {
                         paddingRight: 1,
                     }}>
                         <MyButton onPress={() => {
-                            navigation.navigate('SCek', item);
+                            if (item.tahun < 17) {
+                                navigation.navigate('SCek2', item);
+                            } else {
+                                navigation.navigate('SCek', item);
+                            }
                         }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
                     </View>
                     <View style={{
@@ -156,7 +227,11 @@ export default function SStatus({ navigation }) {
 
                 {item.status_keluarga == "Aman" &&
                     < MyButton onPress={() => {
-                        navigation.navigate('SCek', item);
+                        if (item.tahun < 17) {
+                            navigation.navigate('SCek2', item);
+                        } else {
+                            navigation.navigate('SCek', item);
+                        }
                     }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
                 }
             </View>

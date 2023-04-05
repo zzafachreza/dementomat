@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
     Text,
@@ -18,7 +18,7 @@ import { fonts } from '../../utils/fonts';
 import { MyInput, MyGap, MyButton, MyPicker } from '../../components';
 import axios from 'axios';
 import { showMessage } from 'react-native-flash-message';
-import { apiURL } from '../../utils/localStorage';
+import { apiURL, apiURLNEW } from '../../utils/localStorage';
 import { Icon } from 'react-native-elements';
 
 export default function Register({ navigation }) {
@@ -26,8 +26,8 @@ export default function Register({ navigation }) {
     const windowHeight = Dimensions.get('window').height;
     const [loading, setLoading] = useState(false);
     const [valid, setValid] = useState(false);
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+
 
     const validate = text => {
         // console.log(text);
@@ -44,13 +44,61 @@ export default function Register({ navigation }) {
         }
     };
 
+    const [kecamatan, setKecamatan] = useState([]);
+    const [desa, setDesa] = useState([]);
+    useEffect(() => {
+        axios.post(apiURLNEW + 'kecamatan').then(res => {
+            console.log(res.data[0].value);
+            setData({
+                ...data,
+                kecamatan: res.data[0].value
+            });
+            getDesa(res.data[0].value)
+            setKecamatan(res.data)
+        })
+    }, []);
+
+    const getDesa = (x) => {
+
+        axios.post(apiURLNEW + 'desa', {
+            kecamatan: x
+        }).then(d => {
+            console.log(d.data);
+            setData({
+                ...data,
+                desa: d.data[0].value
+            });
+            setDesa(d.data);
+        })
+
+    }
+
     const [data, setData] = useState({
         nik: '',
         nama_lengkap: '',
+        nik_alamat: '',
         telepon: '',
         alamat: '',
-        desa: 'Desa Kebak'
+        kecamatan: '',
+        desa: ''
     });
+
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => {
+        if (!isEnabled) {
+            setIsEnabled(true);
+            setData({
+                ...data,
+                alamat: data.nik_alamat
+            })
+        } else {
+            setIsEnabled(false);
+            setData({
+                ...data,
+                alamat: ''
+            })
+        }
+    };
 
     const simpan = () => {
         if (
@@ -172,10 +220,39 @@ export default function Register({ navigation }) {
                         })
                     }
                 />
+
                 <MyGap jarak={10} />
                 <MyInput
 
-                    label="Alamat"
+                    label="Alamat NIK"
+                    iconname="home"
+                    value={data.nik_alamat}
+                    onChangeText={value =>
+                        setData({
+                            ...data,
+                            nik_alamat: value,
+                        })
+                    }
+                />
+                <MyGap jarak={10} />
+                <View style={{
+                    flexDirection: 'row'
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        color: colors.black
+                    }}>Alamat Domisili sama dengan alamat NIK ?</Text>
+                    <Switch
+                        trackColor={{ false: colors.black, true: colors.success }}
+                        thumbColor={isEnabled ? colors.secondary : '#f4f3f4'}
+                        onValueChange={toggleSwitch}
+                        value={isEnabled}
+                    />
+                </View>
+                <MyGap jarak={10} />
+                <MyInput
+
+                    label="Alamat Domisili"
                     iconname="home"
                     value={data.alamat}
                     onChangeText={value =>
@@ -201,6 +278,46 @@ export default function Register({ navigation }) {
                             fontSize: 14,
 
                         }}>
+                        Kecamatan
+                    </Text>
+                </View>
+                <View style={{
+                    backgroundColor: colors.white,
+                    borderRadius: 5,
+                    elevation: 3,
+                }}>
+                    <Picker onValueChange={x => {
+                        setData({
+                            ...data,
+                            kecamatan: x
+                        });
+
+                        getDesa(x);
+                    }}>
+
+                        {kecamatan.map(i => {
+                            return <Picker.Item value={i.value} label={i.label} />
+                        })}
+
+
+                    </Picker>
+                </View>
+                <MyGap jarak={10} />
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        paddingVertical: 3,
+                    }}>
+                    <Icon type="ionicon" name="map" color={colors.black} size={16} />
+                    <Text
+                        style={{
+                            fontFamily: fonts.secondary[600],
+                            color: colors.black,
+                            left: 10,
+                            fontSize: 14,
+
+                        }}>
                         Desa
                     </Text>
                 </View>
@@ -209,18 +326,17 @@ export default function Register({ navigation }) {
                     borderRadius: 5,
                     elevation: 3,
                 }}>
-                    <Picker selectedValue={data.desa} onValueChange={x => {
+                    <Picker onValueChange={x => {
                         setData({
                             ...data,
                             desa: x
                         })
                     }}>
 
-                        <Picker.Item value="Desa Kebak" label="Desa Kebak" />
-                        <Picker.Item value="Desa Kemiri" label="Desa Kemiri" />
-                        <Picker.Item value="Desa Waru" label="Desa Waru" />
-                        <Picker.Item value="Desa Macanan" label="Desa Macanan" />
-                        <Picker.Item value="Desa Nangsi" label="Desa Nangsi" />
+                        {desa.map(i => {
+                            return <Picker.Item value={i.value} label={i.label} />
+                        })}
+
 
                     </Picker>
                 </View>
