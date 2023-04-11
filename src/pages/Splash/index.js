@@ -98,7 +98,7 @@ export default function Splash({ navigation }) {
           color: colors.white,
           marginBottom: 10,
         }}>
-          Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis Mandiri dan Terpadu
+          Sistem Deteksi Dini dan Pemantauan Tuberkulosis Mandiri dan Terpadu
         </Text>
         <ActivityIndicator size="large" color={colors.secondary} />
       </View>

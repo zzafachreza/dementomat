@@ -17,6 +17,8 @@ import {
   SBerat,
   KeluargaEdit,
   Scek2,
+  Account,
+  AccountEdit,
 } from '../pages';
 import { colors } from '../utils';
 
@@ -118,6 +120,34 @@ export default function Router() {
         options={{
           headerShown: true,
           headerTitle: 'Skrinning Anak',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
+
+      <Stack.Screen
+        name="Account"
+        component={Account}
+        options={{
+          headerShown: false,
+          headerTitle: 'Profile Saya',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
+
+      <Stack.Screen
+        name="AccountEdit"
+        component={AccountEdit}
+        options={{
+          headerShown: true,
+          headerTitle: 'Edit Profile',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0,

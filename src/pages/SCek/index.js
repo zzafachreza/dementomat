@@ -38,17 +38,21 @@ export default function SCek({ navigation, route }) {
 
 
     const [soal, setSoal] = useState([
-        { 'pertanyaan': 'Batuk > 2 minggu', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Keringat saat malam hari', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Demam saat malam hari', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Cepat lelah', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Batuk/dahak campur darah', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Terdapat anggota keluarga yang minum obat selama 6 bulan/ anggota keluarga pernah menderita TBC', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Pernah minum obat selama 6 bulan', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Berat badan turun', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Nafsu makan turun', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Sedang mengkonsumsi obat jangka panjang dan tidak boleh terlambat', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Terdapat benjolan pada ketiak, leher atau selangkangan', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Batuk lama 1-2 minggu atau lebih (berdahak ataupun kering)', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Sesak nafas', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Batuk / dahak bercampur darah', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Nyeri dada saat batuk', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Demam', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Keringat di malam hari', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Nafsu makan berkurang', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Penurunan berat badan', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Cepat lelah / letih / lesu', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Ada riwayat kontak (serumah ataupun tidak serumah) dengan penderita TBC / orang yang menjalani pengobatan selama 6 bulan', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Menderita Diabetes Mellitus (DM)', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+
+        { 'pertanyaan': 'Menderita Hipertensi', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Pernah pengobatan TBC sebelumnya / minum obat selama 6 bulan sebelumnya', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+
 
 
 
@@ -67,6 +71,8 @@ export default function SCek({ navigation, route }) {
         9: 0,
         10: 0,
         11: 0,
+        12: 0,
+        13: 0,
 
     });
 
@@ -82,6 +88,8 @@ export default function SCek({ navigation, route }) {
         9: 0,
         10: 0,
         11: 0,
+        12: 0,
+        13: 0,
     });
 
     const MySoal = ({ no, tanya, a, b, c, d, jawab }) => {
@@ -169,7 +177,7 @@ export default function SCek({ navigation, route }) {
                     <MyButton onPress={() => {
                         console.log(jawaban)
 
-                        if (jawaban[6] == 1 && jawaban[1] == 1 && jawaban[5] == 1) {
+                        if (jawaban[1] == 1 && jawaban[3] == 1) {
                             console.log('Wajib menghubungi Kader / Petugas Puskesmas');
 
                             axios.post(apiURL + 'update_status.php', {
@@ -181,19 +189,7 @@ export default function SCek({ navigation, route }) {
                                 navigation.goBack()
                             })
 
-                        } else if (jawaban[6] == 1) {
-                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
-
-                            axios.post(apiURL + 'update_status.php', {
-                                nik_ktp: item.nik_ktp,
-                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
-                            }).then(res => {
-                                console.log(res.data);
-                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
-                                navigation.goBack()
-                            })
-
-                        } else if (jawaban[5] == 1) {
+                        } else if (jawaban[3] == 1) {
                             console.log('Wajib menghubungi Kader / Petugas Puskesmas');
 
                             axios.post(apiURL + 'update_status.php', {

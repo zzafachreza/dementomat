@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 import { fonts } from '../../utils/fonts';
 import { Icon } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { apiURL } from '../../utils/localStorage';
+import { apiURL, apiURLNEW } from '../../utils/localStorage';
 
 
 export default function MyCarouser() {
@@ -26,27 +26,21 @@ export default function MyCarouser() {
 
 
 
-  const [data, setData] = useState([
-    {
-      image: require('../../assets/s1.png')
-    }, {
-      image: require('../../assets/s2.png')
-    }, {
-      image: require('../../assets/s3.png')
-    }, {
-      image: require('../../assets/s4.png')
-    }, {
-      image: require('../../assets/s5.png')
-    }, {
-      image: require('../../assets/s6.png')
-    }, {
-      image: require('../../assets/s7.png')
-    }
-  ]);
+  const [data, setData] = useState([]);
+
+
+  useEffect(() => {
+    axios.post(apiURLNEW + 'slider').then(res => {
+      console.log('slider', res.data);
+      setData(res.data);
+    })
+  }, [])
 
   const renderCarouselItem = ({ item }) => (
     <Image
-      source={item.image}
+      source={{
+        uri: item.image
+      }}
       style={{
         resizeMode: 'cover',
         height: 180,

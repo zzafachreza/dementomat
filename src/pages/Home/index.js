@@ -44,17 +44,6 @@ export default function Home({ navigation }) {
     })
   }, []);
 
-  const images = [
-    {
-      image: 'https://images.unsplash.com/photo-1567226475328-9d6baaf565cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
-      desc: 'Silent Waters in the mountains in midst of Himilayas',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1455620611406-966ca6889d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1130&q=80',
-      desc:
-        'Red fort in India New Delhi is a magnificient masterpeiece of humans',
-    },
-  ]
 
 
 
@@ -80,7 +69,7 @@ export default function Home({ navigation }) {
           <Text style={styles.txt}>
             {/* Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
             Kebakkramat */}
-            Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis Mandiri dan Terpadu
+            Sistem Deteksi Dini dan Pemantauan Tuberkulosis Mandiri dan Terpadu
           </Text>
         </View>
         <View style={{
@@ -89,9 +78,9 @@ export default function Home({ navigation }) {
           height: 80,
         }}>
           <TouchableOpacity onPress={() => {
-            storeData('user', null);
+            // storeData('user', null);
 
-            navigation.replace('Login');
+            navigation.navigate('Account');
           }} style={{
 
             flexDirection: 'row',
@@ -101,13 +90,13 @@ export default function Home({ navigation }) {
             justifyContent: 'center',
             alignItems: 'center'
           }}>
-            <Icon type="ionicon" name="log-out-outline" color={colors.primary} />
+            <Icon type="ionicon" name="person-outline" color={colors.primary} size={14} />
             <Text style={{
               fontFamily: fonts.secondary[600],
               fontSize: windowWidth / 30,
               left: 3,
               color: colors.primary
-            }}>Keluar</Text>
+            }}>Profile</Text>
           </TouchableOpacity>
         </View>
 

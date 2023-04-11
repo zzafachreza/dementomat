@@ -38,12 +38,14 @@ export default function SCek2({ navigation, route }) {
 
 
     const [soal, setSoal] = useState([
-        { 'pertanyaan': 'Apakah ada riwayat kontak dengan orang dewasa yang menderita batuk lama/pengobatan TB?', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Batuk lama >3 minggu', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Berat badan menurun', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Demam yang tidak diketahui sebabnya >2 minggu', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Benjolan di leher/ketiak/selangkangan', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
-        { 'pertanyaan': 'Pembengkakan tulang/sendi', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Apakah ada riwayat kontak (serumah ataupun tidak serumah) dengan orang dewasa yang menderita batuk lama / pengobatan TBC', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Batuk lama 2 minggu atau lebih', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Demam yang tidak diketahui penyebabnya', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Berat badan tidak naik atau turun dalam 2 bulan berturut turut', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Nafsu makan turun', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Lemah / lesu / kurang aktif', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Keringat malam hari', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
+        { 'pertanyaan': 'Benjolan di leher / ketiak / selangkangan', 'a': 'YA', 'b': 'TIDAK', 'betul': 'a' },
 
 
 
@@ -57,6 +59,8 @@ export default function SCek2({ navigation, route }) {
         4: 0,
         5: 0,
         6: 0,
+        7: 0,
+        8: 0,
 
     });
 
@@ -67,6 +71,8 @@ export default function SCek2({ navigation, route }) {
         4: 0,
         5: 0,
         6: 0,
+        7: 0,
+        8: 0,
     });
 
     const MySoal = ({ no, tanya, a, b, c, d, jawab }) => {
@@ -251,6 +257,259 @@ export default function SCek2({ navigation, route }) {
 
 
                         } else if (jawaban[4] == 1 && jawaban[6] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        }
+                        else if (jawaban[2] == 1 && jawaban[5] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[2] == 1 && jawaban[6] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[3] == 1 && jawaban[4] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[3] == 1 && jawaban[5] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[3] == 1 && jawaban[6] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[1] == 1 && jawaban[7] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[2] == 1 && jawaban[7] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[3] == 1 && jawaban[7] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[4] == 1 && jawaban[7] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[5] == 1 && jawaban[7] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[6] == 1 && jawaban[7] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[8] == 1 && jawaban[7] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[1] == 1 && jawaban[8] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[2] == 1 && jawaban[8] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[3] == 1 && jawaban[8] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[4] == 1 && jawaban[8] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[5] == 1 && jawaban[8] == 1) {
+                            console.log('Wajib menghubungi Kader / Petugas Puskesmas');
+
+                            axios.post(apiURL + 'update_status.php', {
+                                nik_ktp: item.nik_ktp,
+                                status_keluarga: 'Wajib menghubungi Kader / Petugas Puskesmas'
+                            }).then(res => {
+                                console.log(res.data);
+                                Alert.alert('Demen Tomat', 'Berhasil disimpan !')
+                                navigation.goBack()
+                            })
+
+
+
+                        } else if (jawaban[6] == 1 && jawaban[8] == 1) {
                             console.log('Wajib menghubungi Kader / Petugas Puskesmas');
 
                             axios.post(apiURL + 'update_status.php', {

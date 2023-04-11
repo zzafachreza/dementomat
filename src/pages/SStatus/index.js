@@ -1,4 +1,4 @@
-import { Alert, FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, FlatList, Image, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { colors, fonts, windowHeight, windowWidth } from '../../utils'
 import axios from 'axios'
@@ -22,7 +22,11 @@ export default function SStatus({ navigation }) {
     const [kirim, setKirim] = useState({});
     const [data, setData] = useState([]);
     const [user, setUser] = useState({});
-
+    const [kecamatan, setKecamatan] = useState({
+        nama: '',
+        telepon: '',
+        puskesmas: ''
+    })
 
 
 
@@ -158,9 +162,31 @@ export default function SStatus({ navigation }) {
                             textAlign: 'center',
                             fontFamily: fonts.secondary[400],
                         }}>{item.status_keluarga}</Text>
+
                     </View>
                 </View>
 
+                {item.status_keluarga == "Wajib menghubungi Kader / Petugas Puskesmas" && <TouchableOpacity style={{
+                    padding: 10,
+                    marginVertical: 5,
+                    backgroundColor: colors.primary,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 10,
+                    flexDirection: 'row'
+                }} onPress={() => Linking.openURL('https://wa.me/' + kecamatan.telepon)}>
+                    <View style={{
+                        marginHorizontal: 5,
+                    }}>
+                        <Icon name='logo-whatsapp' type='ionicon' size={14} color={colors.white} />
+                    </View>
+                    <View>
+                        <Text style={{
+                            color: colors.white,
+                            fontFamily: fonts.secondary[600]
+                        }}>{kecamatan.nama} - {kecamatan.telepon}</Text>
+                    </View>
+                </TouchableOpacity>}
                 {/* button screening */}
 
                 {item.status_keluarga == "Belum Mengisi" && <MyButton onPress={() => {
@@ -250,11 +276,28 @@ export default function SStatus({ navigation }) {
     const getMyFirst = () => {
         getData('user').then(user => {
             setUser(user);
+
+            axios.post(apiURLNEW + 'kontak', {
+                kecamatan: user.kecamatan
+            }).then(res => {
+                {
+
+                    console.log(res.data);
+                    setKecamatan({
+                        nama: res.data[0].nama,
+                        telepon: res.data[0].telepon,
+                        puskesmas: res.data[0].puskesmas
+                    })
+
+                }
+            })
+
             setKirim({
                 ...kirim,
                 nik_keluarga: user.nik
             });
             getDataKeluarga(user.nik);
+
 
         })
     }
@@ -341,6 +384,7 @@ export default function SStatus({ navigation }) {
                         <MyInput
 
                             label="NIK"
+                            placeholder="Harus 16 Digit"
                             iconname="card"
                             value={data.nik_ktp}
                             onChangeText={value =>
@@ -421,11 +465,15 @@ export default function SStatus({ navigation }) {
                         <MyButton onPress={() => {
                             console.log(kirim)
 
-                            axios.post(apiURL + 'add_keluarga.php', kirim).then(res => {
-                                console.log(res.data);
-                                setOpen(false);
-                                getDataKeluarga(user.nik)
-                            })
+                            if (kirim.nik_ktp.length !== 16) {
+                                Alert.alert('SI DEMEN TOMAT', 'Nik harus 16 digit !')
+                            } else {
+                                axios.post(apiURL + 'add_keluarga.php', kirim).then(res => {
+                                    console.log(res.data);
+                                    setOpen(false);
+                                    getDataKeluarga(user.nik)
+                                })
+                            }
 
 
                         }} Icons="checkmark-circle-outline" warna={colors.btn_primary} colorText={colors.primary} iconColor={colors.primary} title="Simpan" />

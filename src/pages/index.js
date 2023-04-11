@@ -13,6 +13,9 @@ import SCekDahak from './SCekDahak';
 import SBerat from './SBerat';
 import KeluargaEdit from './KeluargaEdit';
 import Scek2 from './SCek2';
+import Account from './Account';
+import AccountEdit from './AccountEdit';
+
 
 
 
@@ -42,7 +45,9 @@ export {
   SStatus,
   SBerat,
   KeluargaEdit,
-  Scek2
+  Scek2,
+  Account,
+  AccountEdit
 
 
 };

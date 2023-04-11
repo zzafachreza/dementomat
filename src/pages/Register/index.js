@@ -48,13 +48,14 @@ export default function Register({ navigation }) {
     const [desa, setDesa] = useState([]);
     useEffect(() => {
         axios.post(apiURLNEW + 'kecamatan').then(res => {
-            console.log(res.data[0].value);
+            console.log('data kecamatan', res.data);
             setData({
                 ...data,
                 kecamatan: res.data[0].value
             });
-            getDesa(res.data[0].value)
+
             setKecamatan(res.data)
+            getDesa(res.data[0].value)
         })
     }, []);
 
@@ -115,6 +116,10 @@ export default function Register({ navigation }) {
         } else if (data.nik.length === 0) {
             showMessage({
                 message: 'Maaf nik masih kosong !',
+            });
+        } else if (data.nik.length !== 16) {
+            showMessage({
+                message: 'Maaf nik harus 16 digit !',
             });
         } else if (data.nama_lengkap.length === 0) {
             showMessage({
