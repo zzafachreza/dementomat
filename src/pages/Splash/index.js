@@ -87,9 +87,10 @@ export default function Splash({ navigation }) {
         />
         <Text style={{
           fontFamily: fonts.secondary[600],
-          fontSize: windowWidth / 15,
-          color: colors.white
-        }}>SI DEMEN TOMAT</Text>
+          fontSize: windowWidth / 18,
+          color: colors.white,
+          textAlign: 'center'
+        }}>SI DEMEN TOMAT DAN TERASI</Text>
         <Text style={{
           fontFamily: fonts.secondary[400],
           fontSize: windowWidth / 28,
@@ -98,7 +99,7 @@ export default function Splash({ navigation }) {
           color: colors.white,
           marginBottom: 10,
         }}>
-          Sistem Deteksi Dini dan Pemantauan Tuberkulosis Mandiri dan Terpadu
+          Sistem deteksi dini dan pemantauan tuberculosis mandiri terpadu dan terintegerasi
         </Text>
         <ActivityIndicator size="large" color={colors.secondary} />
       </View>

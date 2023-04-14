@@ -466,7 +466,7 @@ export default function SStatus({ navigation }) {
                             console.log(kirim)
 
                             if (kirim.nik_ktp.length !== 16) {
-                                Alert.alert('SI DEMEN TOMAT', 'Nik harus 16 digit !')
+                                Alert.alert('SI DEMEN TOMAT DAN TERASI', 'Nik harus 16 digit !')
                             } else {
                                 axios.post(apiURL + 'add_keluarga.php', kirim).then(res => {
                                     console.log(res.data);

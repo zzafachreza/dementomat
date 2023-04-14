@@ -65,11 +65,11 @@ export default function Home({ navigation }) {
 
         }}>
           <Text style={styles.txt}>Selamat datang, {user.nama_lengkap}</Text>
-          <Text style={styles.txtLogo}>SI DEMEN TOMAT</Text>
+          <Text style={styles.txtLogo}>SI DEMEN TOMAT DAN TERASI</Text>
           <Text style={styles.txt}>
             {/* Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
             Kebakkramat */}
-            Sistem Deteksi Dini dan Pemantauan Tuberkulosis Mandiri dan Terpadu
+            Sistem deteksi dini dan pemantauan tuberculosis mandiri terpadu dan terintegerasi
           </Text>
         </View>
         <View style={{
@@ -139,7 +139,7 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   txt: {
     fontFamily: fonts.secondary[400],
-    fontSize: windowWidth / 30,
+    fontSize: windowWidth / 32,
     color: colors.white,
   }
   , txt2: {
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
   txtLogo: {
     fontFamily: fonts.secondary[600],
-    fontSize: windowWidth / 20,
+    fontSize: windowWidth / 21,
     marginBottom: 0,
     color: colors.white,
   }, txtLogo2: {

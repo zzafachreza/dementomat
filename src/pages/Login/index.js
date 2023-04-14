@@ -21,13 +21,13 @@ export default function ({ navigation }) {
 
 
     if (kirim.nik.length == 0 && kirim.length == 0) {
-      Alert.alert('SI DEMEN TOMAT', 'NIK dan Passwoord tidak boleh kosong !');
+      Alert.alert('SI DEMEN TOMAT DAN TERASI', 'NIK dan Passwoord tidak boleh kosong !');
     } else if (kirim.nik.length == 0) {
-      Alert.alert('SI DEMEN TOMAT', 'NIK tidak boleh kosong !');
+      Alert.alert('SI DEMEN TOMAT DAN TERASI', 'NIK tidak boleh kosong !');
     } else if (kirim.nik.length !== 16) {
-      Alert.alert('SI DEMEN TOMAT', 'NIK harus 16 digit !');
+      Alert.alert('SI DEMEN TOMAT DAN TERASI', 'NIK harus 16 digit !');
     } else if (kirim.password.length == 0) {
-      Alert.alert('SI DEMEN TOMAT', 'Passwoord tidak boleh kosong !');
+      Alert.alert('SI DEMEN TOMAT DAN TERASI', 'Passwoord tidak boleh kosong !');
     } else {
 
 
@@ -41,7 +41,7 @@ export default function ({ navigation }) {
             setLoading(false);
             if (res.data.kode == 50) {
 
-              Alert.alert('SI DEMEN TOMAT', res.data.msg);
+              Alert.alert('SI DEMEN TOMAT DAN TERASI DAN TERASI', res.data.msg);
 
             } else {
               storeData('user', res.data);
@@ -72,9 +72,9 @@ export default function ({ navigation }) {
           }} />
           <Text style={{
             fontFamily: fonts.secondary[600],
-            fontSize: windowWidth / 15,
+            fontSize: windowWidth / 18,
             color: colors.white
-          }}>SI DEMEN TOMAT</Text>
+          }}>SI DEMEN TOMAT DAN TERASI</Text>
           <Text style={{
             fontFamily: fonts.secondary[400],
             fontSize: windowWidth / 28,
@@ -85,7 +85,7 @@ export default function ({ navigation }) {
           }}>
             {/* Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
             Kebakkramat */}
-            Sistem Deteksi Dini dan Pemantauan Tuberkulosis Mandiri dan Terpadu
+            Sistem deteksi dini dan pemantauan tuberculosis mandiri terpadu dan terintegerasi
           </Text>
 
         </View>
