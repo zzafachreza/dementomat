@@ -139,7 +139,7 @@ export default function Register({ navigation }) {
                 message: 'Maaf Password masih kosong !',
             });
         } else {
-            // setLoading(true);
+            setLoading(true);
             console.log(data);
             axios
                 .post(apiURL + 'register.php', data)
@@ -283,7 +283,7 @@ export default function Register({ navigation }) {
                             fontSize: 14,
 
                         }}>
-                        Kecamatan
+                        Kecamatan / Puskesmas
                     </Text>
                 </View>
                 <View style={{

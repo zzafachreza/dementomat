@@ -65,16 +65,50 @@ export default function ({ navigation }) {
       <ScrollView style={{ padding: 10, flex: 1 }}>
         <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingTop: 10 }}>
 
-          <Image source={require('../../assets/puskesmas.png')} style={{
-            width: 95,
-            height: 105,
-            resizeMode: 'contain'
-          }} />
+          <View style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: 15,
+          }}>
+            <View style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+              <Image
+                source={require('../../assets/karang.png')}
+                style={
+                  {
+                    width: windowWidth / 3.5,
+                    height: 100,
+                    resizeMode: 'contain'
+                  }
+                }
+              />
+            </View>
+            <View style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+              <Image
+                source={require('../../assets/tos.png')}
+                style={
+                  {
+                    width: windowWidth / 3.5,
+                    height: 100,
+                    resizeMode: 'contain'
+                  }
+                }
+              />
+            </View>
+          </View>
           <Text style={{
             fontFamily: fonts.secondary[600],
             fontSize: windowWidth / 18,
             color: colors.white
-          }}>SI DEMEN TOMAT DAN TERASI</Text>
+          }}>SI DEMEN TOMAT TERASI</Text>
           <Text style={{
             fontFamily: fonts.secondary[400],
             fontSize: windowWidth / 28,
@@ -85,7 +119,7 @@ export default function ({ navigation }) {
           }}>
             {/* Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
             Kebakkramat */}
-            Sistem deteksi dini dan pemantauan tuberculosis mandiri terpadu dan terintegerasi
+            Sistem Deteksi Dini dan Pemantauan Tuberkulosis Mandiri Terpadu dan Terintegrasi
           </Text>
 
         </View>
@@ -139,6 +173,13 @@ export default function ({ navigation }) {
           </View>
         }
       </ScrollView >
+      <Text style={{
+        margin: 5,
+        textAlign: 'center',
+        color: colors.black,
+        fontFamily: fonts.secondary[600],
+        fontSize: 15
+      }}>Dinas Kesehatan Kabupaten Karanganyar</Text>
     </ImageBackground>
   );
 }

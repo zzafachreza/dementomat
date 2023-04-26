@@ -75,22 +75,51 @@ export default function Splash({ navigation }) {
       }}>
 
 
-        <Image
-          source={require('../../assets/puskesmas.png')}
-          style={
-            {
-              width: 150,
-              height: 180,
-              marginBottom: 10,
-            }
-          }
-        />
+        <View style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: 15,
+        }}>
+          <View style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <Image
+              source={require('../../assets/karang.png')}
+              style={
+                {
+                  width: windowWidth / 3.5,
+                  height: 180,
+                  resizeMode: 'contain'
+                }
+              }
+            />
+          </View>
+          <View style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <Image
+              source={require('../../assets/tos.png')}
+              style={
+                {
+                  width: windowWidth / 3.5,
+                  height: 180,
+                  resizeMode: 'contain'
+                }
+              }
+            />
+          </View>
+        </View>
         <Text style={{
           fontFamily: fonts.secondary[600],
           fontSize: windowWidth / 18,
           color: colors.white,
           textAlign: 'center'
-        }}>SI DEMEN TOMAT DAN TERASI</Text>
+        }}>SI DEMEN TOMAT TERASI</Text>
         <Text style={{
           fontFamily: fonts.secondary[400],
           fontSize: windowWidth / 28,
@@ -98,8 +127,7 @@ export default function Splash({ navigation }) {
 
           color: colors.white,
           marginBottom: 10,
-        }}>
-          Sistem deteksi dini dan pemantauan tuberculosis mandiri terpadu dan terintegerasi
+        }}>Sistem Deteksi Dini dan Pemantauan Tuberkulosis Mandiri Terpadu dan Terintegrasi
         </Text>
         <ActivityIndicator size="large" color={colors.secondary} />
       </View>

@@ -65,11 +65,11 @@ export default function Home({ navigation }) {
 
         }}>
           <Text style={styles.txt}>Selamat datang, {user.nama_lengkap}</Text>
-          <Text style={styles.txtLogo}>SI DEMEN TOMAT DAN TERASI</Text>
+          <Text style={styles.txtLogo}>SI DEMEN TOMAT TERASI</Text>
           <Text style={styles.txt}>
             {/* Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
             Kebakkramat */}
-            Sistem deteksi dini dan pemantauan tuberculosis mandiri terpadu dan terintegerasi
+            Sistem Deteksi Dini dan Pemantauan Tuberkulosis Mandiri Terpadu dan Terintegrasi
           </Text>
         </View>
         <View style={{

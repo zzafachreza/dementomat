@@ -24,4 +24,4 @@ export const apiURL = 'https://dementomat.zavalabs.com/api/';
 export const apiURLNEW = 'https://dementomat.zavalabs.com/myapi/';
 export const wenURL = apiURL.replace("api/", "");
 
-export const MYAPP = 'SI DEMEN TOMAT DAN TERASI';
+export const MYAPP = 'SI DEMEN TOMAT TERASI';
