@@ -2,7 +2,7 @@ import { Alert, FlatList, Image, Linking, ScrollView, StyleSheet, Text, Touchabl
 import React, { useCallback, useEffect, useState } from 'react'
 import { colors, fonts, windowHeight, windowWidth } from '../../utils'
 import axios from 'axios'
-import { apiURL, apiURLNEW, getData } from '../../utils/localStorage';
+import { MYAPP, apiURL, apiURLNEW, getData } from '../../utils/localStorage';
 import YoutubePlayer from "react-native-youtube-iframe";
 import { MyButton, MyGap, MyInput } from '../../components';
 import DatePicker from 'react-native-date-picker'
@@ -260,6 +260,43 @@ export default function SStatus({ navigation }) {
                         }
                     }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
                 }
+
+                {/* CEK KESEHATAN JANTUNG */}
+
+                <View style={{
+                    borderWidth: 1,
+                    padding: 10,
+                    marginVertical: 10,
+                    borderRadius: 10,
+                    borderColor: colors.danger,
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[800],
+                        color: colors.danger,
+                        fontSize: 14,
+                        marginBottom: 10,
+                    }}>CEK KESEHATAN JANTUNG</Text>
+
+                    <MyButton warna={colors.danger} Icons="fitness" title="Screening" onPress={() => {
+                        Alert.alert(MYAPP, 'TAHAPAN SCREENING', [
+                            { text: 'KEMBALI' },
+                            {
+                                text: 'TANPA HASIL LABORATORIUM',
+                                onPress: () => navigation.navigate('Screening', {
+                                    jenis: 'TANPA HASIL LABORATORIUM',
+                                    data: item
+                                })
+                            },
+                            {
+                                text: 'DENGAN HASIL LABORATORIUM',
+                                onPress: () => navigation.navigate('Screening', {
+                                    jenis: 'DENGAN HASIL LABORATORIUM',
+                                    data: item
+                                })
+                            },
+                        ])
+                    }} />
+                </View>
             </View>
         )
     }
@@ -384,6 +421,7 @@ export default function SStatus({ navigation }) {
                         <MyInput
 
                             label="NIK"
+                            maxLength={16} keyboardType='number-pad'
                             placeholder="Harus 16 Digit"
                             iconname="card"
                             value={data.nik_ktp}

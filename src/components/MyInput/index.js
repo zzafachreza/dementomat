@@ -18,6 +18,7 @@ export default function MyInput({
   placeholder,
   autoFocus,
   tinggi,
+  maxLength,
   multiline,
   label2,
   styleLabel,
@@ -37,7 +38,7 @@ export default function MyInput({
             fontFamily: fonts.secondary[600],
             color: labelColor,
             left: 10,
-            fontSize: windowWidth / 28,
+            fontSize: 12,
             ...styleLabel,
           }}>
           {label}
@@ -49,7 +50,7 @@ export default function MyInput({
             fontFamily: fonts.secondary[600],
             color: colors.primary,
             left: 10,
-            fontSize: 14,
+            fontSize: 12,
             ...styleLabel,
           }}>
           {label2}
@@ -63,18 +64,19 @@ export default function MyInput({
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         value={value}
+        maxLength={maxLength}
         onChangeText={onChangeText}
         autoCapitalize="none"
         style={{
-          elevation: 3,
+          // elevation: 3,
           borderColor: colors.border,
           backgroundColor: colors.white,
-          borderRadius: 5,
+          borderRadius: 10,
           height: tinggi,
           borderWidth: 1,
           paddingLeft: 10,
           color: colors.black,
-          fontSize: 14,
+          fontSize: 12,
           fontFamily: fonts.primary[400],
           ...styleInput,
         }}

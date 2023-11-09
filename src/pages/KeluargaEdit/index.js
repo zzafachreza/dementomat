@@ -20,7 +20,7 @@ export default function KeluargaEdit({ navigation, route }) {
             backgroundColor: colors.primary
         }}>
             <ScrollView>
-                <MyInput label="NIK KTP" iconname="card" value={kirim.nik_ktp} onChangeText={x => setKirim({ ...kirim, nik_ktp: x })} />
+                <MyInput label="NIK KTP" maxLength={16} keyboardType='number-pad' iconname="card" value={kirim.nik_ktp} onChangeText={x => setKirim({ ...kirim, nik_ktp: x })} />
                 <MyGap jarak={10} />
                 <MyInput label="Nama Lengkap" iconname="person" value={kirim.nama_keluarga} onChangeText={x => setKirim({ ...kirim, nama_keluarga: x })} />
                 <MyGap jarak={10} />

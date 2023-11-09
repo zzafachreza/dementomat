@@ -125,7 +125,7 @@ export default function ({ navigation }) {
         </View>
         <MyGap jarak={10} />
         <View style={{ padding: 10, marginVertical: 10, flex: 1 }}>
-          <MyInput label="NIK" onChangeText={val => setKirim({
+          <MyInput maxLength={16} keyboardType="number-pad" label="NIK" onChangeText={val => setKirim({
             ...kirim,
             nik: val
           })}

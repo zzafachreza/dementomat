@@ -19,6 +19,7 @@ import {
   Scek2,
   Account,
   AccountEdit,
+  Screening,
 } from '../pages';
 import { colors } from '../utils';
 
@@ -69,6 +70,20 @@ export default function Router() {
         options={{
           headerShown: true,
           headerTitle: 'Edit Anggota Keluarga',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
+
+      <Stack.Screen
+        name="Screening"
+        component={Screening}
+        options={{
+          headerShown: true,
+          headerTitle: 'Cek Kesehatan Jantung',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0,

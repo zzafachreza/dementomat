@@ -15,6 +15,7 @@ import KeluargaEdit from './KeluargaEdit';
 import Scek2 from './SCek2';
 import Account from './Account';
 import AccountEdit from './AccountEdit';
+import Screening from './Screening';
 
 
 
@@ -32,6 +33,7 @@ import AccountEdit from './AccountEdit';
 
 export {
   Splash,
+  Screening,
   Home,
   SCek,
   SCekDahak,
