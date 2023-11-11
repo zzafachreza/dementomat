@@ -20,6 +20,7 @@ import {
   Account,
   AccountEdit,
   Screening,
+  ScreeningData,
 } from '../pages';
 import { colors } from '../utils';
 
@@ -84,6 +85,20 @@ export default function Router() {
         options={{
           headerShown: true,
           headerTitle: 'Cek Kesehatan Jantung',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
+
+      <Stack.Screen
+        name="ScreeningData"
+        component={ScreeningData}
+        options={{
+          headerShown: true,
+          headerTitle: 'Riwayat Cek Kesehatan Jantung',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0,

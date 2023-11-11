@@ -16,6 +16,7 @@ import Scek2 from './SCek2';
 import Account from './Account';
 import AccountEdit from './AccountEdit';
 import Screening from './Screening';
+import ScreeningData from './ScreeningData';
 
 
 
@@ -34,6 +35,7 @@ import Screening from './Screening';
 export {
   Splash,
   Screening,
+  ScreeningData,
   Home,
   SCek,
   SCekDahak,

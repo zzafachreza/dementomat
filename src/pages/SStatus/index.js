@@ -296,6 +296,28 @@ export default function SStatus({ navigation }) {
                             },
                         ])
                     }} />
+
+                    <MyGap jarak={10} />
+
+                    <MyButton onPress={() => {
+                        Alert.alert(MYAPP, 'RIWAYAT SCREENING', [
+                            { text: 'KEMBALI' },
+                            {
+                                text: 'RIWAYAT TANPA HASIL LABORATORIUM',
+                                onPress: () => navigation.navigate('ScreeningData', {
+                                    jenis: 'TANPA HASIL LABORATORIUM',
+                                    data: item
+                                })
+                            },
+                            {
+                                text: 'RIWAYAT DENGAN HASIL LABORATORIUM',
+                                onPress: () => navigation.navigate('ScreeningData', {
+                                    jenis: 'DENGAN HASIL LABORATORIUM',
+                                    data: item
+                                })
+                            },
+                        ])
+                    }} borderColor={colors.danger} Icons="receipt" iconColor={colors.danger} borderSize={1} title="Riwayat Dengan Hasil Lab" colorText={colors.danger} />
                 </View>
             </View>
         )
