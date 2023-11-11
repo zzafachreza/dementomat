@@ -56,12 +56,51 @@ export default function ScreeningData({ navigation, route }) {
                     fontFamily: fonts.secondary[600],
                     fontSize: 15,
                 }}>{moment(item.tanggal).format('dddd, DD MMMM YYYY')}</Text>
+                <ListData label="Ada Diabetes" value={item.diabetes} />
                 <ListData label="Gula Darah Sewaktu" value={item.gula + ' mg/dl'} />
                 <ListData label="Kolesterol" value={item.kolesterol + ' mg/dl'} />
                 <ListData label="Tensi" value={item.tensi + ' mmHg'} />
                 <ListData label="Kelompok Umur" value={item.umur + ' Tahun'} />
                 <ListData label="Kebiasaan Merokok" value={item.merokok} />
                 <ListData label="Jenis Kelamin" value={item.jenis_kelamin} />
+
+
+                <View style={{
+                    marginVertical: 10,
+                    padding: 10,
+                    width: 70,
+                    borderRadius: 35,
+                    alignSelf: 'center',
+                    height: 70,
+                    backgroundColor: item.warna,
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 20,
+                    }}>{item.skor}%</Text>
+                </View>
+                <View>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 15,
+                    }}>Hasil</Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 15,
+                    }}>{item.hasil}</Text>
+                </View>
+                <View>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 15,
+                    }}>Edukasi</Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 15,
+                    }}>{item.edukasi}</Text>
+                </View>
             </View>
         )
     }
@@ -85,7 +124,42 @@ export default function ScreeningData({ navigation, route }) {
                 <ListData label="Berat Badan" value={item.berat + ' kg'} />
                 <ListData label="Tinggi Badan" value={item.tinggi + ' cm'} />
                 <ListData label="Hasil IMT" value={item.imt} />
-
+                <View style={{
+                    marginVertical: 10,
+                    padding: 10,
+                    width: 70,
+                    borderRadius: 35,
+                    alignSelf: 'center',
+                    height: 70,
+                    backgroundColor: item.warna,
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 20,
+                    }}>{item.skor}%</Text>
+                </View>
+                <View>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 15,
+                    }}>Hasil</Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 15,
+                    }}>{item.hasil}</Text>
+                </View>
+                <View>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 15,
+                    }}>Edukasi</Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 15,
+                    }}>{item.edukasi}</Text>
+                </View>
 
             </View>
         )
@@ -103,7 +177,7 @@ export default function ScreeningData({ navigation, route }) {
             jenis: route.params.jenis,
             fid_nik: item.data.nik_ktp
         }).then(res => {
-            console.log(res.data);
+            console.log(`${moment().format('ymdhis')}`, res.data);
             setData(res.data)
         }).finally(() => {
             setLoading(false);
