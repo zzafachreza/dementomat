@@ -19,6 +19,7 @@ export default function Screening({ navigation, route }) {
     const [kirim, setKirim] = useState({
         fid_nik: item.data.nik_ktp,
         jenis: item.jenis,
+        diabetes: 'Tidak',
         jenis_kelamin: 'Laki-laki',
         merokok: 'Tidak',
         umur: '40-44',
@@ -46,7 +47,8 @@ export default function Screening({ navigation, route }) {
                 showMessage({
                     type: 'success',
                     message: 'Terima kasih Sudah Melakukan Screening !'
-                })
+                });
+                navigation.goBack();
             }
         })
     }
@@ -67,7 +69,17 @@ export default function Screening({ navigation, route }) {
 
             <ScrollView showsVerticalScrollIndicator={false}>
                 {item.jenis == 'DENGAN HASIL LABORATORIUM' && <>
+                    <MyGap jarak={10} />
+                    <MyPicker onValueChange={x => {
+                        setKirim({
+                            ...kirim,
+                            diabetes: x
+                        })
+                    }} label="Ada Diabetes ?" data={[
+                        { label: 'Tidak', value: 'Tidak' },
+                        { label: 'Ya', value: 'Ya' },
 
+                    ]} />
                     <MyGap jarak={10} />
                     <MyInput label="Gula Darah Sewaktu (mg/dl)" onChangeText={x => {
                         setKirim({
