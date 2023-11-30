@@ -3,8 +3,10 @@ import { StyleSheet, Alert, Text, View, Image, ScrollView, ActivityIndicator, To
 import { fonts, windowWidth, colors } from '../../utils';
 import { MyInput, MyGap, MyButton } from '../../components';
 import axios from 'axios';
-import { apiURL, storeData } from '../../utils/localStorage';
+import { apiURL, apiURLNEW, storeData } from '../../utils/localStorage';
 import { ImageBackground } from 'react-native';
+import { useEffect } from 'react';
+import { Linking } from 'react-native';
 
 
 export default function ({ navigation }) {
@@ -14,6 +16,15 @@ export default function ({ navigation }) {
     password: ''
   });
   const [loading, setLoading] = useState(false);
+
+  const [comp, setComp] = useState({});
+
+  useEffect(() => {
+    axios.post(apiURLNEW + 'company').then(res => {
+      console.log(res.data);
+      setComp(res.data);
+    })
+  }, [])
 
 
 
@@ -81,7 +92,7 @@ export default function ({ navigation }) {
                 style={
                   {
                     width: windowWidth / 3.5,
-                    height: 100,
+                    height: 80,
                     resizeMode: 'contain'
                   }
                 }
@@ -97,7 +108,23 @@ export default function ({ navigation }) {
                 style={
                   {
                     width: windowWidth / 3.5,
-                    height: 100,
+                    height: 80,
+                    resizeMode: 'contain'
+                  }
+                }
+              />
+            </View>
+            <View style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+              <Image
+                source={require('../../assets/cerdik.png')}
+                style={
+                  {
+                    width: windowWidth / 3.5,
+                    height: 80,
                     resizeMode: 'contain'
                   }
                 }
@@ -143,12 +170,26 @@ export default function ({ navigation }) {
             iconname="key"
             placeholder="Masukan password Anda"
           />
+          <TouchableOpacity onPress={() => {
+            Linking.openURL('https://wa.me/' + comp.tlp)
+          }} style={{
+            justifyContent: 'center',
+            alignItems: 'flex-end',
+            marginTop: 10,
+            paddingVertical: 10,
+          }}>
+            <Text style={{
+              fontFamily: fonts.secondary[600],
+              fontSize: 14,
+              color: colors.black
+            }}>Lupa password ?</Text>
+          </TouchableOpacity>
           <MyGap jarak={40} />
           {!loading && <MyButton
             onPress={masuk}
-            title="LOGIN SEKARANG"
-            colorText={colors.primary}
-            iconColor={colors.primary}
+            title="MASUK SEKARANG"
+            colorText={colors.black}
+            iconColor={colors.black}
             warna={colors.btn_primary}
             Icons="log-in-outline"
           />}

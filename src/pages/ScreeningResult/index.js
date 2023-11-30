@@ -38,11 +38,13 @@ const ListData = ({ label, value }) => {
     )
 }
 
-export default function ScreeningData({ navigation, route }) {
+export default function ScreeningResult({ navigation, route }) {
 
     const item = route.params;
     const [data, setData] = useState([]);
     const isFocused = useIsFocused();
+
+
     const __renderItemDENGAN = ({ item }) => {
         return (
             <View style={{
@@ -175,9 +177,8 @@ export default function ScreeningData({ navigation, route }) {
 
     const __getTransaction = () => {
         setLoading(true)
-        axios.post(apiURLNEW + 'screening', {
-            jenis: route.params.jenis,
-            fid_nik: item.data.nik_ktp
+        axios.post(apiURLNEW + 'screening_hasil', {
+            fid_nik: item.nik_ktp
         }).then(res => {
             console.log(`${moment().format('ymdhis')}`, res.data);
             setData(res.data)
@@ -209,13 +210,13 @@ export default function ScreeningData({ navigation, route }) {
                 <ActivityIndicator color={colors.primary} size="large" />
             </View>}
 
-            {item.jenis == 'DENGAN HASIL LABORATORIUM' && !loading && <>
+            {data[0].jenis == 'DENGAN HASIL LABORATORIUM' && !loading && <>
 
                 <FlatList data={data} renderItem={__renderItemDENGAN} />
 
             </>}
 
-            {item.jenis == 'TANPA HASIL LABORATORIUM' && !loading && <>
+            {data[0].jenis == 'TANPA HASIL LABORATORIUM' && !loading && <>
 
                 <FlatList data={data} renderItem={__renderItemTANPA} />
 

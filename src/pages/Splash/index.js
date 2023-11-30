@@ -35,13 +35,12 @@ export default function Splash({ navigation }) {
     const unsubscribe = getData('user').then(res => {
       // console.log(res);
       if (!res) {
-        // console.log('beum login');
+
 
         setTimeout(() => {
           navigation.replace('Login');
         }, 1500);
       } else {
-        console.log('sudah login logon');
 
         setTimeout(() => {
           navigation.replace('Home');
@@ -59,12 +58,6 @@ export default function Splash({ navigation }) {
         paddingBottom: 20,
       }}>
 
-      <View style={{
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
-      </View>
 
 
       <View style={{
@@ -73,47 +66,65 @@ export default function Splash({ navigation }) {
         alignItems: 'center',
         paddingHorizontal: windowWidth / 10,
       }}>
-
-
         <View style={{
-          flexDirection: 'row',
+          flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          marginBottom: 15,
         }}>
+          <Image
+            source={require('../../assets/karang.png')}
+            style={
+              {
+                width: windowWidth / 2,
+                height: 180,
+                resizeMode: 'contain'
+              }
+            }
+          />
           <View style={{
-            flex: 1,
+            marginTop: 20,
+            flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
+
           }}>
-            <Image
-              source={require('../../assets/karang.png')}
-              style={
-                {
-                  width: windowWidth / 3.5,
-                  height: 180,
-                  resizeMode: 'contain'
+
+            <View style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+              <Image
+                source={require('../../assets/tos.png')}
+                style={
+                  {
+                    width: windowWidth / 3.5,
+                    height: 150,
+                    resizeMode: 'contain'
+                  }
                 }
-              }
-            />
-          </View>
-          <View style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-            <Image
-              source={require('../../assets/tos.png')}
-              style={
-                {
-                  width: windowWidth / 3.5,
-                  height: 180,
-                  resizeMode: 'contain'
+              />
+            </View>
+            <View style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+              <Image
+                source={require('../../assets/cerdik.png')}
+                style={
+                  {
+                    width: windowWidth / 3.5,
+                    height: 150,
+                    resizeMode: 'contain'
+                  }
                 }
-              }
-            />
+              />
+            </View>
           </View>
         </View>
+
+
         <Text style={{
           fontFamily: fonts.secondary[600],
           fontSize: windowWidth / 18,

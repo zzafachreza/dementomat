@@ -4,14 +4,14 @@ import { colors, fonts, windowHeight, windowWidth } from '../../utils'
 import axios from 'axios'
 import { MYAPP, apiURL, apiURLNEW, getData } from '../../utils/localStorage';
 import YoutubePlayer from "react-native-youtube-iframe";
-import { MyButton, MyGap, MyInput } from '../../components';
+import { MyButton, MyCalendar, MyGap, MyInput, MyPicker } from '../../components';
 import DatePicker from 'react-native-date-picker'
 import { useIsFocused } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 import { ImageBackground } from 'react-native';
 import moment from 'moment';
 import { showMessage } from 'react-native-flash-message';
-
+import ProgressCircle from 'react-native-progress-circle'
 
 export default function SStatus({ navigation }) {
 
@@ -106,7 +106,7 @@ export default function SStatus({ navigation }) {
                             fontFamily: fonts.secondary[600],
                         }}>NIK</Text>
                         <Text style={{
-                            color: colors.secondary,
+                            color: colors.black,
                             fontFamily: fonts.secondary[400],
                         }}>{item.nik_ktp}</Text>
                         <Text style={{
@@ -114,142 +114,189 @@ export default function SStatus({ navigation }) {
                             fontFamily: fonts.secondary[600],
                         }}>Nama Anggota Keluarga</Text>
                         <Text style={{
-                            color: colors.secondary,
+                            color: colors.black,
                             fontFamily: fonts.secondary[400],
                         }}>{item.nama_keluarga}</Text>
                         <Text style={{
                             color: colors.secondary,
                             fontFamily: fonts.secondary[600],
-                        }}>Tanggal Lahir</Text>
+                        }}>Jenis Kelamin</Text>
+                        <Text style={{
+                            color: colors.black,
+                            fontFamily: fonts.secondary[400],
+                        }}>{item.jenis_kelamin}</Text>
                         <Text style={{
                             color: colors.secondary,
+                            fontFamily: fonts.secondary[600],
+                        }}>Tanggal Lahir</Text>
+                        <Text style={{
+                            color: colors.black,
                             fontFamily: fonts.secondary[400],
-                        }}>{item.tanggal_lahir}</Text>
+                        }}>{moment(item.tanggal_lahir).format('dddd, DD MMMM YYYY')}</Text>
+                        <Text style={{
+                            color: colors.secondary,
+                            fontFamily: fonts.secondary[600],
+                        }}>Umur</Text>
                         <Text style={{
                             color: colors.black,
                             fontFamily: fonts.secondary[400],
                         }}>{item.umur}</Text>
 
 
-                        <Text style={{
-                            color: colors.secondary,
-                            fontFamily: fonts.secondary[600],
-                        }}>Klasifikasi TB</Text>
-                        <Text style={{
-                            color: colors.secondary,
-                            fontFamily: fonts.secondary[400],
-                        }}>{item.klasifikasi}</Text>
+
                     </View>
 
+
+                </View>
+
+
+                {/* button screening */}
+                <View style={{
+                    borderWidth: 1,
+                    padding: 10,
+                    marginVertical: 10,
+                    borderRadius: 10,
+                    borderColor: colors.success,
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[800],
+                        color: colors.success,
+                        fontSize: 14,
+                        marginBottom: 10,
+                    }}>SKRINNING KESEHATAN TBC </Text>
+                    <Text style={{
+                        color: colors.secondary,
+                        fontFamily: fonts.secondary[600],
+                    }}>Klasifikasi TB</Text>
+                    <Text style={{
+                        color: colors.secondary,
+                        fontFamily: fonts.secondary[400],
+                    }}>{item.klasifikasi}</Text>
                     <View style={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flex: 1
+                        flexDirection: 'row'
                     }}>
+                        <View style={{
+                            flex: 1,
+                        }}>
+                            {item.status_keluarga == "Belum Mengisi" && <MyButton onPress={() => {
+                                if (item.tahun < 17) {
+                                    navigation.navigate('SCek2', item);
+                                } else {
+                                    navigation.navigate('SCek', item);
+                                }
+                            }} title="Skrinning TBC" warna={colors.success} Icons="shield-checkmark-outline" />
+                            }
+
+
+                            {item.status_keluarga == "Dalam Pengobatan" &&
+                                <View style={{
+                                    // flexDirection: 'row'
+                                }}>
+                                    <View style={{
+                                        flex: 1,
+                                        paddingRight: 1,
+                                    }}>
+                                        <MyButton onPress={() => {
+                                            // alert(item.tahun)
+                                            if (item.tahun < 17) {
+                                                navigation.navigate('SCek2', item);
+                                            } else {
+                                                navigation.navigate('SCek', item);
+                                            }
+                                        }} title="Skrinning TBC" warna={colors.success} Icons="shield-checkmark-outline" />
+                                    </View>
+                                    <View style={{
+                                        flex: 1,
+                                        paddingLeft: 1,
+                                    }}>
+                                        <MyButton onPress={() => {
+                                            navigation.navigate('SObat', item);
+                                        }} title="Pemantauan Obat" warna={colors.danger} Icons="shield-checkmark-outline" />
+                                    </View>
+                                </View>}
+
+                            {item.status_keluarga == "Wajib menghubungi Kader / Petugas Puskesmas" && <View style={{
+                                // flexDirection: 'row'
+                            }}>
+                                <View style={{
+                                    flex: 1,
+
+                                }}>
+                                    <MyButton onPress={() => {
+                                        if (item.tahun < 17) {
+                                            navigation.navigate('SCek2', item);
+                                        } else {
+                                            navigation.navigate('SCek', item);
+                                        }
+                                    }} title="Skrinning TBC" warna={colors.success} Icons="shield-checkmark-outline" />
+                                </View>
+                                <View style={{
+                                    flex: 1,
+                                    marginTop: 10,
+
+                                }}><MyButton onPress={() => {
+                                    navigation.navigate('SCekDahak', item);
+                                }} title="Cek Dahak" warna={colors.black} Icons="shield-checkmark-outline" />
+                                </View>
+
+                            </View>
+                            }
+
+
+                        </View>
+
 
                         <View style={{
-                            margin: 10,
-                            borderRadius: 40,
-                            borderWidth: 3,
-                            borderColor: colors.black,
-                            backgroundColor: item.status_keluarga == "Wajib menghubungi Kader / Petugas Puskesmas" ? 'red' : item.status_keluarga == "Aman" ? 'green' : item.status_keluarga == "Dalam Pengobatan" ? 'yellow' : 'white',
-                            elevation: 3,
-                            width: 80,
-                            height: 80
-                        }} />
-                        <Text style={{
-                            color: colors.black,
-                            textAlign: 'center',
-                            fontFamily: fonts.secondary[400],
-                        }}>{item.status_keluarga}</Text>
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            flex: 1
+                        }}>
 
-                    </View>
-                </View>
-
-                {item.status_keluarga == "Wajib menghubungi Kader / Petugas Puskesmas" && <TouchableOpacity style={{
-                    padding: 10,
-                    marginVertical: 5,
-                    backgroundColor: colors.primary,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderRadius: 10,
-                    flexDirection: 'row'
-                }} onPress={() => Linking.openURL('https://wa.me/' + kecamatan.telepon)}>
-                    <View style={{
-                        marginHorizontal: 5,
-                    }}>
-                        <Icon name='logo-whatsapp' type='ionicon' size={14} color={colors.white} />
-                    </View>
-                    <View>
-                        <Text style={{
-                            color: colors.white,
-                            fontFamily: fonts.secondary[600]
-                        }}>{kecamatan.nama} - {kecamatan.telepon}</Text>
-                    </View>
-                </TouchableOpacity>}
-                {/* button screening */}
-
-                {item.status_keluarga == "Belum Mengisi" && <MyButton onPress={() => {
-                    if (item.tahun < 17) {
-                        navigation.navigate('SCek2', item);
-                    } else {
-                        navigation.navigate('SCek', item);
-                    }
-                }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
-                }
+                            <View style={{
+                                borderRadius: 40,
+                                borderWidth: 3,
+                                borderColor: colors.black,
+                                backgroundColor: item.status_keluarga == "Wajib menghubungi Kader / Petugas Puskesmas" ? 'red' : item.status_keluarga == "Aman" ? 'green' : item.status_keluarga == "Dalam Pengobatan" ? 'yellow' : 'white',
+                                elevation: 3,
+                                width: 80,
+                                height: 80
+                            }} />
+                            <Text style={{
+                                color: colors.black,
+                                textAlign: 'center',
+                                fontSize: 12,
+                                fontFamily: fonts.secondary[400],
+                            }}>{item.status_keluarga}</Text>
 
 
-                {item.status_keluarga == "Dalam Pengobatan" && <View style={{
-                    flexDirection: 'row'
-                }}>
-                    <View style={{
-                        flex: 1,
-                        paddingRight: 1,
-                    }}>
-                        <MyButton onPress={() => {
-                            // alert(item.tahun)
-                            if (item.tahun < 17) {
-                                navigation.navigate('SCek2', item);
-                            } else {
-                                navigation.navigate('SCek', item);
-                            }
-                        }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
-                    </View>
-                    <View style={{
-                        flex: 1,
-                        paddingLeft: 1,
-                    }}>
-                        <MyButton onPress={() => {
-                            navigation.navigate('SObat', item);
-                        }} title="Pemantauan Obat" warna={colors.danger} Icons="shield-checkmark-outline" />
-                    </View>
-                </View>}
+                            {item.status_keluarga == "Wajib menghubungi Kader / Petugas Puskesmas" && <TouchableOpacity style={{
+                                padding: 10,
+                                marginVertical: 5,
+                                backgroundColor: colors.primary,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderRadius: 10,
+                                flexDirection: 'row'
+                            }} onPress={() => Linking.openURL('https://wa.me/' + kecamatan.telepon)}>
+                                <View style={{
+                                    marginHorizontal: 5,
+                                }}>
+                                    <Icon name='logo-whatsapp' type='ionicon' size={14} color={colors.white} />
+                                </View>
+                                <View>
+                                    <Text style={{
+                                        color: colors.white,
+                                        fontFamily: fonts.secondary[600]
+                                    }}>{kecamatan.nama}</Text>
+                                </View>
+                            </TouchableOpacity>}
 
-                {item.status_keluarga == "Wajib menghubungi Kader / Petugas Puskesmas" && <View style={{
-                    flexDirection: 'row'
-                }}>
-                    <View style={{
-                        flex: 1,
-                        paddingRight: 1,
-                    }}>
-                        <MyButton onPress={() => {
-                            if (item.tahun < 17) {
-                                navigation.navigate('SCek2', item);
-                            } else {
-                                navigation.navigate('SCek', item);
-                            }
-                        }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
-                    </View>
-                    <View style={{
-                        flex: 1,
-                        paddingLeft: 1,
-                    }}><MyButton onPress={() => {
-                        navigation.navigate('SCekDahak', item);
-                    }} title="Cek Dahak" warna={colors.black} Icons="shield-checkmark-outline" />
+                        </View>
                     </View>
 
                 </View>
-                }
+
+
 
                 {item.status_keluarga == "Aman" &&
                     < MyButton onPress={() => {
@@ -275,49 +322,120 @@ export default function SStatus({ navigation }) {
                         color: colors.danger,
                         fontSize: 14,
                         marginBottom: 10,
-                    }}>CEK KESEHATAN JANTUNG</Text>
+                    }}>SCRINNING KESEHATAN JANTUNG</Text>
 
-                    <MyButton warna={colors.danger} Icons="fitness" title="Screening" onPress={() => {
-                        Alert.alert(MYAPP, 'TAHAPAN SCREENING', [
-                            { text: 'KEMBALI' },
-                            {
-                                text: 'TANPA HASIL LABORATORIUM',
-                                onPress: () => navigation.navigate('Screening', {
-                                    jenis: 'TANPA HASIL LABORATORIUM',
-                                    data: item
-                                })
-                            },
-                            {
-                                text: 'DENGAN HASIL LABORATORIUM',
-                                onPress: () => navigation.navigate('Screening', {
-                                    jenis: 'DENGAN HASIL LABORATORIUM',
-                                    data: item
-                                })
-                            },
-                        ])
-                    }} />
+                    <View style={{
+                        flexDirection: 'row'
+                    }}>
+                        <View style={{
+                            flex: 1,
+                        }}>
+                            <MyButton warna={colors.danger} Icons="fitness" title="Skrinning Jantung" onPress={() => {
+                                Alert.alert(MYAPP, 'TAHAPAN SKRINNING', [
+                                    { text: 'KEMBALI' },
+                                    {
+                                        text: 'TANPA HASIL LABORATORIUM',
+                                        onPress: () => navigation.navigate('Screening', {
+                                            jenis: 'TANPA HASIL LABORATORIUM',
+                                            data: item
+                                        })
+                                    },
+                                    {
+                                        text: 'DENGAN HASIL LABORATORIUM',
+                                        onPress: () => navigation.navigate('Screening', {
+                                            jenis: 'DENGAN HASIL LABORATORIUM',
+                                            data: item
+                                        })
+                                    },
+                                ])
+                            }} />
 
-                    <MyGap jarak={10} />
+                            <MyGap jarak={10} />
 
-                    <MyButton onPress={() => {
-                        Alert.alert(MYAPP, 'RIWAYAT SCREENING', [
-                            { text: 'KEMBALI' },
-                            {
-                                text: 'RIWAYAT TANPA HASIL LABORATORIUM',
-                                onPress: () => navigation.navigate('ScreeningData', {
-                                    jenis: 'TANPA HASIL LABORATORIUM',
-                                    data: item
-                                })
-                            },
-                            {
-                                text: 'RIWAYAT DENGAN HASIL LABORATORIUM',
-                                onPress: () => navigation.navigate('ScreeningData', {
-                                    jenis: 'DENGAN HASIL LABORATORIUM',
-                                    data: item
-                                })
-                            },
-                        ])
-                    }} borderColor={colors.danger} Icons="receipt" iconColor={colors.danger} borderSize={1} title="Riwayat Dengan Hasil Lab" colorText={colors.danger} />
+                            <MyButton onPress={() => {
+                                Alert.alert(MYAPP, 'RIWAYAT SKRINNING', [
+                                    { text: 'KEMBALI' },
+                                    {
+                                        text: 'RIWAYAT TANPA HASIL LABORATORIUM',
+                                        onPress: () => navigation.navigate('ScreeningData', {
+                                            jenis: 'TANPA HASIL LABORATORIUM',
+                                            data: item
+                                        })
+                                    },
+                                    {
+                                        text: 'RIWAYAT DENGAN HASIL LABORATORIUM',
+                                        onPress: () => navigation.navigate('ScreeningData', {
+                                            jenis: 'DENGAN HASIL LABORATORIUM',
+                                            data: item
+                                        })
+                                    },
+                                ])
+                            }} borderColor={colors.danger} Icons="receipt" iconColor={colors.danger} borderSize={1} title="Riwayat Jantung" colorText={colors.danger} />
+
+
+                        </View>
+                        <View style={{
+                            flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>
+                            <ProgressCircle
+                                percent={item.skor}
+                                radius={40}
+                                borderWidth={5}
+                                color={colors.danger}
+                                shadowColor={colors.secondary}
+                                bgColor="#fff"
+                            >
+                                <Text style={{ fontSize: 20 }}>{`${item.skor}%`}</Text>
+                            </ProgressCircle>
+                            {item.skor >= 20 && <TouchableOpacity style={{
+                                padding: 10,
+                                marginVertical: 5,
+                                backgroundColor: colors.primary,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderRadius: 10,
+                                flexDirection: 'row'
+                            }} onPress={() => Linking.openURL('https://wa.me/' + kecamatan.telepon)}>
+                                <View style={{
+                                    marginHorizontal: 5,
+                                }}>
+                                    <Icon name='logo-whatsapp' type='ionicon' size={14} color={colors.white} />
+                                </View>
+                                <View>
+                                    <Text style={{
+                                        color: colors.white,
+                                        fontFamily: fonts.secondary[600]
+                                    }}>{kecamatan.nama}</Text>
+                                </View>
+                            </TouchableOpacity>}
+                        </View>
+                    </View>
+                    <View style={{
+                        padding: 5,
+                    }}>
+                        <View>
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                fontSize: 15,
+                            }}>Hasil</Text>
+                            <Text style={{
+                                fontFamily: fonts.secondary[400],
+                                fontSize: 15,
+                            }}>{item.hasil}</Text>
+                        </View>
+                        <View>
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                fontSize: 15,
+                            }}>Edukasi</Text>
+                            <Text style={{
+                                fontFamily: fonts.secondary[400],
+                                fontSize: 15,
+                            }}>{item.edukasi}</Text>
+                        </View>
+                    </View>
                 </View>
             </View>
         )
@@ -362,7 +480,7 @@ export default function SStatus({ navigation }) {
     }
 
     const getDataKeluarga = (x) => {
-        axios.post(apiURL + 'keluarga.php', {
+        axios.post(apiURLNEW + 'keluarga', {
             nik: x
         }).then(res => {
             console.log(res.data);
@@ -428,7 +546,7 @@ export default function SStatus({ navigation }) {
                         padding: 10,
                     }}>
                         <MyInput
-
+                            placeholder="Masukan nama lengkap"
                             label="Nama Lengkap"
                             iconname="person"
                             value={data.nama_keluarga}
@@ -444,9 +562,9 @@ export default function SStatus({ navigation }) {
 
                             label="NIK"
                             maxLength={16} keyboardType='number-pad'
-                            placeholder="Harus 16 Digit"
+                            placeholder="Masukan NIK harus 16 Digit"
                             iconname="card"
-                            value={data.nik_ktp}
+
                             onChangeText={value =>
                                 setKirim({
                                     ...kirim,
@@ -455,72 +573,25 @@ export default function SStatus({ navigation }) {
                             }
                         />
                         <MyGap jarak={10} />
-                        <View
-                            style={{
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                paddingVertical: 3,
-                            }}>
-                            <Icon type="ionicon" name="calendar" color={colors.black} size={16} />
-                            <Text
-                                style={{
-                                    fontFamily: fonts.secondary[600],
-                                    color: colors.black,
-                                    left: 10,
-                                    fontSize: 14,
-
-                                }}>
-                                Tanggal Lahir
-                            </Text>
-                        </View>
-                        <TouchableOpacity onPress={() => setOpenDate(true)} style={{
-                            backgroundColor: colors.white,
-                            width: '100%',
-                            height: 50,
-                            borderRadius: 5,
-                            elevation: 3,
-                        }}>
-                            <Text style={{
-                                marginVertical: 15,
-                                marginLeft: 10,
-                                fontFamily: fonts.secondary[400],
-                                fontSize: 14
-                            }}>{kirim.tanggal_lahir}</Text>
-                        </TouchableOpacity>
-
-                        <DatePicker
-                            modal
-                            mode='date'
-                            open={openDate}
-                            date={date}
-                            onConfirm={(date) => {
-                                setOpenDate(false)
-                                setDate(date)
-                                // setKirim({
-                                //     ...kirim,
-                                //     tanggal_lahir: date
-                                // })
-                                console.log(date);
-
-                                var today = new Date(date);
-                                var dd = String(today.getDate()).padStart(2, '0');
-                                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-                                var yyyy = today.getFullYear();
+                        <MyCalendar label="Tanggal Lahir" iconname="calendar" onDateChange={x => {
+                            setKirim({
+                                ...kirim,
+                                tanggal_lahir: x
+                            })
+                        }} />
+                        <MyGap jarak={10} />
+                        <MyPicker label="Jenis Kelamin" data={[
+                            { label: 'Laki-laki', value: 'Laki-laki' },
+                            { label: 'Perempuan', value: 'Perempuan' },
+                        ]} iconname="male-female" onValueChange={x => {
+                            setKirim({
+                                ...kirim,
+                                jenis_kelamin: x
+                            })
+                        }} />
 
 
-                                today = yyyy + '-' + mm + '-' + dd;
-                                console.log(today);
 
-                                setKirim({
-                                    ...kirim,
-                                    tanggal_lahir: yyyy + '-' + mm + '-' + dd
-                                })
-
-                            }}
-                            onCancel={() => {
-                                setOpenDate(false)
-                            }}
-                        />
                         <MyGap jarak={10} />
                         <MyButton onPress={() => {
                             console.log(kirim)
@@ -528,7 +599,7 @@ export default function SStatus({ navigation }) {
                             if (kirim.nik_ktp.length !== 16) {
                                 Alert.alert('SI DEMEN TOMAT DAN TERASI', 'Nik harus 16 digit !')
                             } else {
-                                axios.post(apiURL + 'add_keluarga.php', kirim).then(res => {
+                                axios.post(apiURLNEW + 'add_keluarga', kirim).then(res => {
                                     console.log(res.data);
                                     setOpen(false);
                                     getDataKeluarga(user.nik)

@@ -17,6 +17,7 @@ import Account from './Account';
 import AccountEdit from './AccountEdit';
 import Screening from './Screening';
 import ScreeningData from './ScreeningData';
+import ScreeningResult from './ScreeningResult';
 
 
 
@@ -51,7 +52,8 @@ export {
   KeluargaEdit,
   Scek2,
   Account,
-  AccountEdit
+  AccountEdit,
+  ScreeningResult
 
 
 };

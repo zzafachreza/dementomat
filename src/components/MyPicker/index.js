@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Picker } from 'react-native';
 import { Icon, ListItem, Button } from 'react-native-elements';
 import { colors } from '../../utils/colors';
-import { fonts, windowWidth } from '../../utils/fonts';
+import { fonts } from '../../utils/fonts';
 
 export default function MyPicker({
   label,
@@ -10,7 +10,6 @@ export default function MyPicker({
   onValueChange,
   onChangeText,
   value,
-  labelColor = colors.black,
   keyboardType,
   secureTextEntry,
   styleInput,
@@ -28,13 +27,13 @@ export default function MyPicker({
           alignItems: 'center',
           paddingVertical: 0,
         }}>
-        <Icon type="ionicon" name={iconname} color={colors.primary} size={16} />
+        <Icon type="ionicon" name={iconname} color={colors.black} size={16} />
         <Text
           style={{
             fontFamily: fonts.secondary[600],
-            color: labelColor,
+            color: colors.black,
             left: 10,
-            fontSize: 12,
+            fontSize: 14,
             ...styleLabel,
           }}>
           {label}
@@ -47,7 +46,7 @@ export default function MyPicker({
         borderRadius: 10,
         marginTop: 5,
         fontFamily: fonts.secondary[600],
-        borderColor: colors.border,
+        borderColor: colors.primary,
       }}>
         <Picker style={{ height: 48, transform: [{ scale: 0.9 }] }}
           selectedValue={value} onValueChange={onValueChange}>

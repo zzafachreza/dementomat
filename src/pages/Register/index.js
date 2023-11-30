@@ -20,7 +20,7 @@ import axios from 'axios';
 import { showMessage } from 'react-native-flash-message';
 import { apiURL, apiURLNEW } from '../../utils/localStorage';
 import { Icon } from 'react-native-elements';
-
+import { useIsFocused } from '@react-navigation/native';
 export default function Register({ navigation }) {
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
@@ -46,30 +46,32 @@ export default function Register({ navigation }) {
 
     const [kecamatan, setKecamatan] = useState([]);
     const [desa, setDesa] = useState([]);
+    const isFocused = useIsFocused();
     useEffect(() => {
-        axios.post(apiURLNEW + 'kecamatan').then(res => {
-            console.log('data kecamatan', res.data);
-            setData({
-                ...data,
-                kecamatan: res.data[0].value
-            });
+        if (isFocused) {
+            axios.post(apiURLNEW + 'kecamatan').then(res => {
+                console.log('data kecamatan', res.data);
+                setData({
+                    ...data,
+                    kecamatan: res.data[0].value
+                });
 
-            setKecamatan(res.data)
-            getDesa(res.data[0].value)
-        })
-    }, []);
+                setKecamatan(res.data)
+                getDesa(res.data[0].value)
+            })
+        }
+    }, [isFocused]);
 
     const getDesa = (x) => {
 
         axios.post(apiURLNEW + 'desa', {
             kecamatan: x
         }).then(d => {
-            console.log(d.data);
             setData({
                 ...data,
                 desa: d.data[0].value
             });
-            setDesa(d.data);
+            // setDesa(d.data);
         })
 
     }
@@ -105,7 +107,7 @@ export default function Register({ navigation }) {
         if (
             data.nik.length === 0 &&
             data.nama_lengkap.length === 0 &&
-            data.tlepon.length === 0 &&
+            data.telepon.length === 0 &&
             data.alamat.length === 0 &&
             data.password.length === 0
 
@@ -128,19 +130,20 @@ export default function Register({ navigation }) {
         }
         else if (data.telepon.length === 0) {
             showMessage({
-                message: 'Maaf nama kucing masih kosong !',
+                message: 'Maaf nomor telepon kosong !',
             });
         } else if (data.alamat.length === 0) {
             showMessage({
-                message: 'Maaf nama kucing masih kosong !',
+                message: 'Maaf alamat masih kosong !',
             });
         } else if (data.password.length === 0) {
             showMessage({
                 message: 'Maaf Password masih kosong !',
             });
         } else {
-            setLoading(true);
+
             console.log(data);
+            // setLoading(true);
             axios
                 .post(apiURL + 'register.php', data)
                 .then(res => {
@@ -184,7 +187,9 @@ export default function Register({ navigation }) {
 
                 <MyGap jarak={10} />
                 <MyInput
-
+                    placeholder="Masukan NIK kepala keluarga"
+                    keyboardType='number-pad'
+                    maxLength={16}
                     label="NIK Kepala Keluarga"
                     iconname="card"
                     value={data.nik}
@@ -201,6 +206,7 @@ export default function Register({ navigation }) {
                 <MyInput
 
                     label="Nama Lengkap"
+                    placeholder="Masukan nama lengkap"
                     iconname="person"
                     value={data.nama_lengkap}
                     onChangeText={value =>
@@ -216,6 +222,7 @@ export default function Register({ navigation }) {
 
                     label="Telepon"
                     iconname="call"
+                    placeholder="Masukan nomor telepon"
                     keyboardType="number-pad"
                     value={data.telepon}
                     onChangeText={value =>
@@ -231,6 +238,7 @@ export default function Register({ navigation }) {
 
                     label="Alamat NIK"
                     iconname="home"
+                    placeholder="Masukan alamat NIK"
                     value={data.nik_alamat}
                     onChangeText={value =>
                         setData({
@@ -256,7 +264,7 @@ export default function Register({ navigation }) {
                 </View>
                 <MyGap jarak={10} />
                 <MyInput
-
+                    placeholder="Masukan alamat domisili"
                     label="Alamat Domisili"
                     iconname="home"
                     value={data.alamat}
@@ -291,13 +299,19 @@ export default function Register({ navigation }) {
                     borderRadius: 5,
                     elevation: 3,
                 }}>
-                    <Picker onValueChange={x => {
-                        setData({
-                            ...data,
-                            kecamatan: x
-                        });
+                    <Picker selectedValue={data.kecamatan} onValueChange={x => {
 
-                        getDesa(x);
+
+                        axios.post(apiURLNEW + 'desa', {
+                            kecamatan: x
+                        }).then(d => {
+                            setData({
+                                ...data,
+                                kecamatan: x,
+                                desa: d.data[0].value
+                            });
+                            setDesa(d.data);
+                        })
                     }}>
 
                         {kecamatan.map(i => {
@@ -347,7 +361,7 @@ export default function Register({ navigation }) {
                 </View>
                 <MyGap jarak={10} />
                 <MyInput
-
+                    placeholder="Masukan password"
                     label="Password"
                     iconname="key"
                     secureTextEntry

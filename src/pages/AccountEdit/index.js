@@ -112,12 +112,20 @@ export default function AccountEdit({ navigation, route }) {
                     elevation: 3,
                 }}>
                     <Picker selectedValue={kirim.kecamatan} onValueChange={x => {
-                        setKirim({
-                            ...kirim,
-                            kecamatan: x
-                        });
 
-                        getDesa(x);
+
+
+                        axios.post(apiURLNEW + 'desa', {
+                            kecamatan: x
+                        }).then(d => {
+                            setKirim({
+                                ...kirim,
+                                kecamatan: x,
+                                desa: d.data[0].value
+                            });
+                            console.log(d.data);
+                            setDesa(d.data);
+                        })
                     }}>
 
                         {kecamatan.map(i => {

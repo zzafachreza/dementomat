@@ -21,6 +21,7 @@ import {
   AccountEdit,
   Screening,
   ScreeningData,
+  ScreeningResult,
 } from '../pages';
 import { colors } from '../utils';
 
@@ -56,7 +57,7 @@ export default function Router() {
         component={Register}
         options={{
           headerShown: true,
-          headerTitle: 'Register',
+          headerTitle: 'Daftar',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0,
@@ -278,6 +279,22 @@ export default function Router() {
         options={{
           headerShown: true,
           headerTitle: 'Skrinning',
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0,
+          },
+          headerTintColor: '#fff',
+        }}
+      />
+
+
+
+      <Stack.Screen
+        name="ScreeningResult"
+        component={ScreeningResult}
+        options={{
+          headerShown: true,
+          headerTitle: 'Hasil Skrinning Jantung',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0,

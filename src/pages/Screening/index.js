@@ -16,13 +16,17 @@ export default function Screening({ navigation, route }) {
 
     const item = route.params;
 
+
+
+
+
     const [kirim, setKirim] = useState({
         fid_nik: item.data.nik_ktp,
         jenis: item.jenis,
         diabetes: 'Tidak',
-        jenis_kelamin: 'Laki-laki',
+        jenis_kelamin: item.jenis_kelamin,
         merokok: 'Tidak',
-        umur: '40-44',
+        umur: KELOMPOK_UMUR,
         gula: '',
         kolesterol: '',
         tensi: '',
@@ -33,13 +37,12 @@ export default function Screening({ navigation, route }) {
     });
 
     const sendServer = () => {
-        console.log({
-            ...kirim,
-            imt: Math.round(kirim.berat / (Math.pow(kirim.tinggi / 100, 2)))
-        })
+
 
         axios.post(apiURLNEW + 'screening_insert', {
             ...kirim,
+            umur: KELOMPOK_UMUR,
+            jenis_kelamin: item.data.jenis_kelamin,
             imt: Math.round(kirim.berat / (Math.pow(kirim.tinggi / 100, 2)))
         }).then(res => {
             console.log(res.data);
@@ -48,10 +51,35 @@ export default function Screening({ navigation, route }) {
                     type: 'success',
                     message: 'Terima kasih Sudah Melakukan Screening !'
                 });
-                navigation.goBack();
+                navigation.replace('ScreeningResult', {
+                    nik_ktp: item.data.nik_ktp
+                });
             }
         })
     }
+
+    const [KELOMPOK_UMUR, setKELOMPOK_UMUR] = useState('');
+    useEffect(() => {
+
+        if (item.data.tahun >= 0 && item.data.tahun <= 44) {
+            setKELOMPOK_UMUR('40-44');
+        } else if (item.data.tahun >= 45 && item.data.tahun <= 49) {
+            setKELOMPOK_UMUR('45-49');
+        } else if (item.data.tahun >= 50 && item.data.tahun <= 54) {
+            setKELOMPOK_UMUR('50-54');
+        } else if (item.data.tahun >= 55 && item.data.tahun <= 59) {
+            setKELOMPOK_UMUR('55-59');
+        } else if (item.data.tahun >= 60 && item.data.tahun <= 64) {
+            setKELOMPOK_UMUR('60-64');
+        } else if (item.data.tahun >= 65 && item.data.tahun <= 69) {
+            setKELOMPOK_UMUR('65-69');
+        } else if (item.data.tahun >= 70 && item.data.tahun <= 74) {
+            setKELOMPOK_UMUR('70-74');
+        }
+
+        console.log(KELOMPOK_UMUR)
+
+    }, [])
 
     return (
         <SafeAreaView style={{
@@ -67,19 +95,55 @@ export default function Screening({ navigation, route }) {
             }}>{item.jenis}</Text>
 
 
-            <ScrollView showsVerticalScrollIndicator={false}>
-                {item.jenis == 'DENGAN HASIL LABORATORIUM' && <>
-                    <MyGap jarak={10} />
-                    <MyPicker onValueChange={x => {
-                        setKirim({
-                            ...kirim,
-                            diabetes: x
-                        })
-                    }} label="Ada Diabetes ?" data={[
-                        { label: 'Tidak', value: 'Tidak' },
-                        { label: 'Ya', value: 'Ya' },
 
-                    ]} />
+            <ScrollView showsVerticalScrollIndicator={false}>
+
+                <View style={{
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    borderColor: colors.primary,
+                }}>
+                    <View style={{
+                        flexDirection: 'row',
+                        padding: 10,
+                        borderBottomWidth: 1,
+                        alignItems: 'center',
+                        borderBottomColor: colors.primary
+                    }}>
+                        <Text style={{
+                            flex: 1,
+                            fontFamily: fonts.secondary[800],
+                            fontSize: 14,
+
+                        }}>Jenis Kelamin</Text>
+                        <Text style={{
+                            flex: 1,
+                            fontFamily: fonts.secondary[600],
+                            fontSize: 14,
+
+                        }}>{item.data.jenis_kelamin}</Text>
+                    </View>
+                    <View style={{
+                        padding: 10,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        borderBottomColor: colors.border
+                    }}>
+                        <Text style={{
+                            flex: 1,
+                            fontFamily: fonts.secondary[800],
+                            fontSize: 14,
+                        }}>Kelompok Umur</Text>
+                        <Text style={{
+                            flex: 1,
+                            fontFamily: fonts.secondary[600],
+                            fontSize: 14,
+
+                        }}>{KELOMPOK_UMUR}</Text>
+                    </View>
+                </View>
+                {item.jenis == 'DENGAN HASIL LABORATORIUM' && <>
+
                     <MyGap jarak={10} />
                     <MyInput label="Gula Darah Sewaktu (mg/dl)" onChangeText={x => {
                         setKirim({
@@ -100,23 +164,9 @@ export default function Screening({ navigation, route }) {
                             ...kirim,
                             tensi: x
                         })
-                    }} label="Tensi (mmHg)" keyboardType='number-pad' />
-                    <MyGap jarak={10} />
-                    <MyPicker onValueChange={x => {
-                        setKirim({
-                            ...kirim,
-                            umur: x
-                        })
-                    }} label="Kelompok Umur" data={[
-                        { label: '40-44', value: '40-44' },
-                        { label: '45-49', value: '45-49' },
-                        { label: '50-54', value: '50-54' },
-                        { label: '55-59', value: '55-59' },
-                        { label: '60-64', value: '60-64' },
-                        { label: '65-69', value: '65-69' },
-                        { label: '70-74', value: '70-74' },
+                    }} label="Tensi Sistolik (mmHg)" keyboardType='number-pad' />
 
-                    ]} />
+
                     <MyGap jarak={10} />
                     <MyPicker onValueChange={x => {
                         setKirim({
@@ -128,17 +178,7 @@ export default function Screening({ navigation, route }) {
                         { label: 'Ya', value: 'Ya' },
 
                     ]} />
-                    <MyGap jarak={10} />
-                    <MyPicker onValueChange={x => {
-                        setKirim({
-                            ...kirim,
-                            jenis_kelamin: x
-                        })
-                    }} label="Jenis Kelamin" data={[
-                        { label: 'Laki-laki', value: 'Laki-laki' },
-                        { label: 'Perempuan', value: 'Perempuan' },
 
-                    ]} />
 
                 </>}
 
@@ -154,16 +194,7 @@ export default function Screening({ navigation, route }) {
 
                     ]} />
                     <MyGap jarak={10} />
-                    <MyPicker onValueChange={x => {
-                        setKirim({
-                            ...kirim,
-                            jenis_kelamin: x
-                        })
-                    }} label="Jenis Kelamin" data={[
-                        { label: 'Laki-laki', value: 'Laki-laki' },
-                        { label: 'Perempuan', value: 'Perempuan' },
 
-                    ]} />
                     <MyGap jarak={10} />
                     <MyInput onChangeText={x => {
                         setKirim({
@@ -171,22 +202,7 @@ export default function Screening({ navigation, route }) {
                             tensi: x
                         })
                     }} label="Tensi (mmHg)" keyboardType='number-pad' />
-                    <MyGap jarak={10} />
-                    <MyPicker onValueChange={x => {
-                        setKirim({
-                            ...kirim,
-                            umur: x
-                        })
-                    }} label="Kelompok Umur" data={[
-                        { label: '40-44', value: '40-44' },
-                        { label: '45-49', value: '45-49' },
-                        { label: '50-54', value: '50-54' },
-                        { label: '55-59', value: '55-59' },
-                        { label: '60-64', value: '60-64' },
-                        { label: '65-69', value: '65-69' },
-                        { label: '70-74', value: '70-74' },
 
-                    ]} />
                     <MyGap jarak={10} />
                     <View style={{
                         flexDirection: 'row'

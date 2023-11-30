@@ -1,7 +1,7 @@
 import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { colors, fonts } from '../../utils';
-import { MyButton, MyGap, MyInput } from '../../components';
+import { MyButton, MyCalendar, MyGap, MyInput, MyPicker } from '../../components';
 import DatePicker from 'react-native-date-picker'
 import { Icon } from 'react-native-elements';
 import axios from 'axios';
@@ -24,72 +24,22 @@ export default function KeluargaEdit({ navigation, route }) {
                 <MyGap jarak={10} />
                 <MyInput label="Nama Lengkap" iconname="person" value={kirim.nama_keluarga} onChangeText={x => setKirim({ ...kirim, nama_keluarga: x })} />
                 <MyGap jarak={10} />
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        paddingVertical: 3,
-                    }}>
-                    <Icon type="ionicon" name="calendar" color={colors.black} size={16} />
-                    <Text
-                        style={{
-                            fontFamily: fonts.secondary[600],
-                            color: colors.black,
-                            left: 10,
-                            fontSize: 14,
-
-                        }}>
-                        Tanggal Lahir
-                    </Text>
-                </View>
-                <TouchableOpacity onPress={() => setOpenDate(true)} style={{
-                    backgroundColor: colors.white,
-                    width: '100%',
-                    height: 50,
-                    borderRadius: 5,
-                    elevation: 3,
-                }}>
-                    <Text style={{
-                        marginVertical: 15,
-                        marginLeft: 10,
-                        fontFamily: fonts.secondary[400],
-                        fontSize: 14
-                    }}>{kirim.tanggal_lahir}</Text>
-                </TouchableOpacity>
-
-                <DatePicker
-                    modal
-                    mode='date'
-                    open={openDate}
-                    date={date}
-                    onConfirm={(date) => {
-                        setOpenDate(false)
-                        setDate(date)
-                        // setKirim({
-                        //     ...kirim,
-                        //     tanggal_lahir: date
-                        // })
-                        console.log(date);
-
-                        var today = new Date(date);
-                        var dd = String(today.getDate()).padStart(2, '0');
-                        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-                        var yyyy = today.getFullYear();
-
-
-                        today = yyyy + '-' + mm + '-' + dd;
-                        console.log(today);
-
-                        setKirim({
-                            ...kirim,
-                            tanggal_lahir: yyyy + '-' + mm + '-' + dd
-                        })
-
-                    }}
-                    onCancel={() => {
-                        setOpenDate(false)
-                    }}
-                />
+                <MyCalendar value={kirim.tanggal_lahir} onDateChange={x => {
+                    setKirim({
+                        ...kirim,
+                        tanggal_lahir: x
+                    })
+                }} label="Tanggal Lahir" iconname="calendar" />
+                <MyGap jarak={10} />
+                <MyPicker label="Jenis Kelamin" value={kirim.jenis_kelamin} onValueChange={x => {
+                    setKirim({
+                        ...kirim,
+                        jenis_kelamin: x
+                    })
+                }} iconname="male-female" data={[
+                    { label: 'Laki-laki', value: 'Laki-laki' },
+                    { label: 'Perempuan', value: 'Perempuan' },
+                ]} />
                 <MyGap jarak={20} />
                 <MyButton onPress={() => {
                     console.log(kirim);
