@@ -210,13 +210,13 @@ export default function ScreeningResult({ navigation, route }) {
                 <ActivityIndicator color={colors.primary} size="large" />
             </View>}
 
-            {data[0].jenis == 'DENGAN HASIL LABORATORIUM' && !loading && <>
+            {route.params.jenis == 'DENGAN HASIL LABORATORIUM' && !loading && <>
 
                 <FlatList data={data} renderItem={__renderItemDENGAN} />
 
             </>}
 
-            {data[0].jenis == 'TANPA HASIL LABORATORIUM' && !loading && <>
+            {route.params.jenis == 'TANPA HASIL LABORATORIUM' && !loading && <>
 
                 <FlatList data={data} renderItem={__renderItemTANPA} />
 

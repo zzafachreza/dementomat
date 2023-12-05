@@ -1,4 +1,4 @@
-import { Alert, FlatList, Image, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Alert, FlatList, Image, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { colors, fonts, windowHeight, windowWidth } from '../../utils'
 import axios from 'axios'
@@ -16,7 +16,7 @@ export default function Screening({ navigation, route }) {
 
     const item = route.params;
 
-
+    const [loading, setLoading] = useState(false);
 
 
 
@@ -38,7 +38,7 @@ export default function Screening({ navigation, route }) {
 
     const sendServer = () => {
 
-
+        setLoading(true);
         axios.post(apiURLNEW + 'screening_insert', {
             ...kirim,
             umur: KELOMPOK_UMUR,
@@ -52,9 +52,13 @@ export default function Screening({ navigation, route }) {
                     message: 'Terima kasih Sudah Melakukan Screening !'
                 });
                 navigation.replace('ScreeningResult', {
-                    nik_ktp: item.data.nik_ktp
+                    nik_ktp: item.data.nik_ktp,
+                    jenis: item.jenis
                 });
             }
+        }).finally(() => {
+
+            setLoading(false);
         })
     }
 
@@ -201,7 +205,7 @@ export default function Screening({ navigation, route }) {
                             ...kirim,
                             tensi: x
                         })
-                    }} label="Tensi (mmHg)" keyboardType='number-pad' />
+                    }} label="Tensi Sistolik (mmHg)" keyboardType='number-pad' />
 
                     <MyGap jarak={10} />
                     <View style={{
@@ -256,7 +260,8 @@ export default function Screening({ navigation, route }) {
                 </>}
 
                 <MyGap jarak={20} />
-                <MyButton onPress={sendServer} warna={colors.danger} title="Simpan" Icons="shield-checkmark-outline" />
+                {loading && <ActivityIndicator size="large" color={colors.primary} />}
+                {!loading && <MyButton onPress={sendServer} warna={colors.danger} title="Simpan" Icons="shield-checkmark-outline" />}
             </ScrollView>
         </SafeAreaView>
     )

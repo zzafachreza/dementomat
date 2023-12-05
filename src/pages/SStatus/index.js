@@ -163,7 +163,7 @@ export default function SStatus({ navigation }) {
                         color: colors.success,
                         fontSize: 14,
                         marginBottom: 10,
-                    }}>SKRINNING KESEHATAN TBC </Text>
+                    }}>SKRINING KESEHATAN TBC </Text>
                     <Text style={{
                         color: colors.secondary,
                         fontFamily: fonts.secondary[600],
@@ -184,7 +184,7 @@ export default function SStatus({ navigation }) {
                                 } else {
                                     navigation.navigate('SCek', item);
                                 }
-                            }} title="Skrinning TBC" warna={colors.success} Icons="shield-checkmark-outline" />
+                            }} title="Skrining TBC" warna={colors.success} Icons="shield-checkmark-outline" />
                             }
 
 
@@ -203,7 +203,7 @@ export default function SStatus({ navigation }) {
                                             } else {
                                                 navigation.navigate('SCek', item);
                                             }
-                                        }} title="Skrinning TBC" warna={colors.success} Icons="shield-checkmark-outline" />
+                                        }} title="Skrining TBC" warna={colors.success} Icons="shield-checkmark-outline" />
                                     </View>
                                     <View style={{
                                         flex: 1,
@@ -228,7 +228,7 @@ export default function SStatus({ navigation }) {
                                         } else {
                                             navigation.navigate('SCek', item);
                                         }
-                                    }} title="Skrinning TBC" warna={colors.success} Icons="shield-checkmark-outline" />
+                                    }} title="Skrining TBC" warna={colors.success} Icons="shield-checkmark-outline" />
                                 </View>
                                 <View style={{
                                     flex: 1,
@@ -305,7 +305,7 @@ export default function SStatus({ navigation }) {
                         } else {
                             navigation.navigate('SCek', item);
                         }
-                    }} title="Skrinning" warna={colors.success} Icons="shield-checkmark-outline" />
+                    }} title="Skrining" warna={colors.success} Icons="shield-checkmark-outline" />
                 }
 
                 {/* CEK KESEHATAN JANTUNG */}
@@ -322,7 +322,7 @@ export default function SStatus({ navigation }) {
                         color: colors.danger,
                         fontSize: 14,
                         marginBottom: 10,
-                    }}>SCRINNING KESEHATAN JANTUNG</Text>
+                    }}>SCRINING KESEHATAN JANTUNG</Text>
 
                     <View style={{
                         flexDirection: 'row'
@@ -330,8 +330,8 @@ export default function SStatus({ navigation }) {
                         <View style={{
                             flex: 1,
                         }}>
-                            <MyButton warna={colors.danger} Icons="fitness" title="Skrinning Jantung" onPress={() => {
-                                Alert.alert(MYAPP, 'TAHAPAN SKRINNING', [
+                            <MyButton warna={colors.danger} Icons="fitness" title="Skrining Jantung" onPress={() => {
+                                Alert.alert(MYAPP, 'TAHAPAN SKRINING', [
                                     { text: 'KEMBALI' },
                                     {
                                         text: 'TANPA HASIL LABORATORIUM',
@@ -353,7 +353,7 @@ export default function SStatus({ navigation }) {
                             <MyGap jarak={10} />
 
                             <MyButton onPress={() => {
-                                Alert.alert(MYAPP, 'RIWAYAT SKRINNING', [
+                                Alert.alert(MYAPP, 'RIWAYAT SKRINING', [
                                     { text: 'KEMBALI' },
                                     {
                                         text: 'RIWAYAT TANPA HASIL LABORATORIUM',

@@ -73,76 +73,67 @@ export default function ({ navigation }) {
     <ImageBackground source={require('../../assets/back.png')} style={{
       flex: 1,
     }}>
-      <ScrollView style={{ padding: 10, flex: 1 }}>
+      <ScrollView style={{ padding: 10, flex: 1 }} showsVerticalScrollIndicator={false}>
         <View style={{ justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingTop: 10 }}>
 
           <View style={{
-            flexDirection: 'row',
+            flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            marginBottom: 15,
           }}>
-            <View style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              <Image
-                source={require('../../assets/karang.png')}
-                style={
-                  {
-                    width: windowWidth / 3.5,
-                    height: 80,
-                    resizeMode: 'contain'
-                  }
+            <Image
+              source={require('../../assets/karang.png')}
+              style={
+                {
+                  width: windowWidth / 3.5,
+                  height: 100,
+                  resizeMode: 'contain'
                 }
-              />
-            </View>
-            <View style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              <Image
-                source={require('../../assets/tos.png')}
-                style={
-                  {
-                    width: windowWidth / 3.5,
-                    height: 80,
-                    resizeMode: 'contain'
-                  }
+              }
+            />
+          </View>
+          <View style={{
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+            marginBottom: 10,
+          }}>
+
+
+            <Image
+              source={require('../../assets/tos.png')}
+              style={
+                {
+                  width: windowWidth / 3.5,
+                  height: 90,
+                  resizeMode: 'contain'
                 }
-              />
-            </View>
-            <View style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              <Image
-                source={require('../../assets/cerdik.png')}
-                style={
-                  {
-                    width: windowWidth / 3.5,
-                    height: 80,
-                    resizeMode: 'contain'
-                  }
+              }
+            />
+
+
+            <Image
+              source={require('../../assets/cerdik.png')}
+              style={
+                {
+                  width: windowWidth / 3.5,
+                  height: 90,
+                  resizeMode: 'contain'
                 }
-              />
-            </View>
+              }
+            />
+
           </View>
           <Text style={{
             fontFamily: fonts.secondary[600],
-            fontSize: windowWidth / 18,
+            fontSize: windowWidth / 22,
             color: colors.white
           }}>SI DEMEN TOMAT TERASI</Text>
           <Text style={{
             fontFamily: fonts.secondary[400],
-            fontSize: windowWidth / 28,
+            fontSize: windowWidth / 32,
             textAlign: 'center',
-
             color: colors.white,
-            marginBottom: 10,
           }}>
             {/* Aplikasi Deteksi Dini dan Pemantauan Tuberkulosis
             Kebakkramat */}
@@ -159,7 +150,7 @@ export default function ({ navigation }) {
 
 
             iconname="card" placeholder="Masukan NIK kepala keluarga" />
-          <MyGap jarak={20} />
+          <MyGap jarak={10} />
           <MyInput
             onChangeText={val => setKirim({
               ...kirim,
@@ -175,12 +166,12 @@ export default function ({ navigation }) {
           }} style={{
             justifyContent: 'center',
             alignItems: 'flex-end',
-            marginTop: 10,
-            paddingVertical: 10,
+            marginTop: 5,
+            paddingVertical: 5,
           }}>
             <Text style={{
               fontFamily: fonts.secondary[600],
-              fontSize: 14,
+              fontSize: windowWidth / 32,
               color: colors.black
             }}>Lupa password ?</Text>
           </TouchableOpacity>
@@ -198,7 +189,7 @@ export default function ({ navigation }) {
             justifyContent: 'center',
             alignItems: 'center'
           }}><Text style={{
-            fontSize: windowWidth / 25,
+            fontSize: windowWidth / 32,
             fontFamily: fonts.primary[400],
             textAlign: 'center',
             color: colors.black
@@ -219,7 +210,7 @@ export default function ({ navigation }) {
         textAlign: 'center',
         color: colors.black,
         fontFamily: fonts.secondary[600],
-        fontSize: 15
+        fontSize: windowWidth / 32,
       }}>Dinas Kesehatan Kabupaten Karanganyar</Text>
     </ImageBackground>
   );
