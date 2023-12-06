@@ -187,6 +187,7 @@ export default function Screening({ navigation, route }) {
                 </>}
 
                 {item.jenis == 'TANPA HASIL LABORATORIUM' && <>
+                    <MyGap jarak={10} />
                     <MyPicker onValueChange={x => {
                         setKirim({
                             ...kirim,
@@ -199,7 +200,7 @@ export default function Screening({ navigation, route }) {
                     ]} />
                     <MyGap jarak={10} />
 
-                    <MyGap jarak={10} />
+
                     <MyInput onChangeText={x => {
                         setKirim({
                             ...kirim,

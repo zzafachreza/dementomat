@@ -49,7 +49,7 @@ export default function ({ navigation }) {
           .post(apiURL + 'login.php', kirim)
           .then(res => {
             console.log(res.data);
-            setLoading(false);
+
             if (res.data.kode == 50) {
 
               Alert.alert('SI DEMEN TOMAT DAN TERASI DAN TERASI', res.data.msg);
@@ -58,6 +58,8 @@ export default function ({ navigation }) {
               storeData('user', res.data);
               navigation.replace('Home');
             }
+          }).finally(() => {
+            setLoading(false);
           });
       }, 1200);
 

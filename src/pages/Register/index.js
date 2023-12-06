@@ -143,7 +143,7 @@ export default function Register({ navigation }) {
         } else {
 
             console.log(data);
-            // setLoading(true);
+            setLoading(true);
             axios
                 .post(apiURL + 'register.php', data)
                 .then(res => {
@@ -168,6 +168,8 @@ export default function Register({ navigation }) {
                             });
                         }, 1200);
                     }
+                }).finally(() => {
+                    setLoading(false);
                 });
         }
     };
