@@ -393,7 +393,7 @@ export default function Register({ navigation }) {
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    <ActivityIndicator color={colors.primary} size="large" />
+                    <ActivityIndicator color={colors.white} size="large" />
                 </View>}
             </ScrollView>
 

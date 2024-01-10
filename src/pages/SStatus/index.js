@@ -309,8 +309,7 @@ export default function SStatus({ navigation }) {
                 }
 
                 {/* CEK KESEHATAN JANTUNG */}
-
-                <View style={{
+                {item.status_keluarga !== "Belum Mengisi" && <View style={{
                     borderWidth: 1,
                     padding: 10,
                     marginVertical: 10,
@@ -436,7 +435,8 @@ export default function SStatus({ navigation }) {
                             }}>{item.edukasi}</Text>
                         </View>
                     </View>
-                </View>
+                </View>}
+
             </View>
         )
     }
