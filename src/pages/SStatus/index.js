@@ -19,7 +19,10 @@ export default function SStatus({ navigation }) {
     const [openDate, setOpenDate] = useState(false)
     const [open, setOpen] = useState(false);
     const isFocused = useIsFocused();
-    const [kirim, setKirim] = useState({});
+    const [kirim, setKirim] = useState({
+        jenis_kelamin: 'Laki-laki',
+        tanggal_lahir: moment().format('YYYY-MM-DD')
+    });
     const [data, setData] = useState([]);
     const [user, setUser] = useState({});
     const [kecamatan, setKecamatan] = useState({
@@ -598,6 +601,8 @@ export default function SStatus({ navigation }) {
 
                             if (kirim.nik_ktp.length !== 16) {
                                 Alert.alert('SI DEMEN TOMAT DAN TERASI', 'Nik harus 16 digit !')
+                            } else if (kirim.tanggal_lahir == moment().format('YYYY-MM-DD')) {
+                                Alert.alert('SI DEMEN TOMAT DAN TERASI', 'Cek Kembali tanggal lahir')
                             } else {
                                 axios.post(apiURLNEW + 'add_keluarga', kirim).then(res => {
                                     console.log(res.data);
