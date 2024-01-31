@@ -41,6 +41,7 @@ const ListData = ({ label, value }) => {
 export default function ScreeningResult({ navigation, route }) {
 
     const item = route.params;
+    confirm.log(item);
     const [data, setData] = useState([]);
     const isFocused = useIsFocused();
 
@@ -180,7 +181,7 @@ export default function ScreeningResult({ navigation, route }) {
         axios.post(apiURLNEW + 'screening_hasil', {
             fid_nik: item.nik_ktp
         }).then(res => {
-            console.log(`${moment().format('ymdhis')}`, res.data);
+            // console.log(`${moment().format('ymdhis')}`, res.data);
             setData(res.data)
         }).finally(() => {
             setLoading(false);

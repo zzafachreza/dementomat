@@ -179,7 +179,7 @@ export default function ScreeningData({ navigation, route }) {
             jenis: route.params.jenis,
             fid_nik: item.data.nik_ktp
         }).then(res => {
-            console.log(`${moment().format('ymdhis')}`, res.data);
+
             setData(res.data)
         }).finally(() => {
             setLoading(false);
@@ -201,28 +201,50 @@ export default function ScreeningData({ navigation, route }) {
                 marginBottom: 10,
             }}>{item.jenis}</Text>
 
-            {loading && <View style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center'
+            <View style={{
+                padding: 10,
+                borderWidth: 1,
+                borderColor: colors.border,
+                borderRadius: 10,
+                marginBottom: 10,
             }}>
-                <ActivityIndicator color={colors.primary} size="large" />
-            </View>}
 
-            {item.jenis == 'DENGAN HASIL LABORATORIUM' && !loading && <>
-
-                <FlatList data={data} renderItem={__renderItemDENGAN} />
-
-            </>}
-
-            {item.jenis == 'TANPA HASIL LABORATORIUM' && !loading && <>
-
-                <FlatList data={data} renderItem={__renderItemTANPA} />
+                <View style={{ marginVertical: 2 }}>
+                    <Text style={{ fontFamily: fonts.secondary[600], fontSize: 12 }}>Nama</Text>
+                    <Text style={{ fontFamily: fonts.secondary[400], fontSize: 12 }}>{item.data.nama_keluarga}</Text>
+                </View>
 
 
-            </>}
+            </View>
 
-        </SafeAreaView>
+            {
+                loading && <View style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <ActivityIndicator color={colors.primary} size="large" />
+                </View>
+            }
+
+            {
+                item.jenis == 'DENGAN HASIL LABORATORIUM' && !loading && <>
+
+                    <FlatList data={data} renderItem={__renderItemDENGAN} />
+
+                </>
+            }
+
+            {
+                item.jenis == 'TANPA HASIL LABORATORIUM' && !loading && <>
+
+                    <FlatList data={data} renderItem={__renderItemTANPA} />
+
+
+                </>
+            }
+
+        </SafeAreaView >
     )
 }
 
